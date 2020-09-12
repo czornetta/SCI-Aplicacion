@@ -41,6 +41,7 @@
             this.definirControlesInternosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.evaluarMatrizDeControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.controlesObservadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.matrizDeControlActivaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seguridadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.areasDeNegocioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,7 +54,7 @@
             this.cambiarIdiomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pruebasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pruebaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.matrizDeControlActivaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bitacoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -178,13 +179,22 @@
             this.controlesObservadosToolStripMenuItem.Text = "Controles Observados";
             this.controlesObservadosToolStripMenuItem.Click += new System.EventHandler(this.controlesObservadosToolStripMenuItem_Click);
             // 
+            // matrizDeControlActivaToolStripMenuItem
+            // 
+            this.matrizDeControlActivaToolStripMenuItem.Name = "matrizDeControlActivaToolStripMenuItem";
+            this.matrizDeControlActivaToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.matrizDeControlActivaToolStripMenuItem.Tag = "matriz_activa";
+            this.matrizDeControlActivaToolStripMenuItem.Text = "Matriz de Control Activa";
+            this.matrizDeControlActivaToolStripMenuItem.Click += new System.EventHandler(this.matrizDeControlActivaToolStripMenuItem_Click);
+            // 
             // seguridadToolStripMenuItem
             // 
             this.seguridadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.areasDeNegocioToolStripMenuItem,
             this.usuariosToolStripMenuItem,
             this.privilegiosToolStripMenuItem,
-            this.rolesToolStripMenuItem});
+            this.rolesToolStripMenuItem,
+            this.bitacoraToolStripMenuItem});
             this.seguridadToolStripMenuItem.Name = "seguridadToolStripMenuItem";
             this.seguridadToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.seguridadToolStripMenuItem.Tag = "menu_seguridad";
@@ -193,7 +203,7 @@
             // areasDeNegocioToolStripMenuItem
             // 
             this.areasDeNegocioToolStripMenuItem.Name = "areasDeNegocioToolStripMenuItem";
-            this.areasDeNegocioToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.areasDeNegocioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.areasDeNegocioToolStripMenuItem.Tag = "areas_negocio";
             this.areasDeNegocioToolStripMenuItem.Text = "Areas de Negocio";
             this.areasDeNegocioToolStripMenuItem.Click += new System.EventHandler(this.areasDeNegocioToolStripMenuItem_Click);
@@ -201,7 +211,7 @@
             // usuariosToolStripMenuItem
             // 
             this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.usuariosToolStripMenuItem.Tag = "usuarios";
             this.usuariosToolStripMenuItem.Text = "Usuarios";
             this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
@@ -209,7 +219,7 @@
             // privilegiosToolStripMenuItem
             // 
             this.privilegiosToolStripMenuItem.Name = "privilegiosToolStripMenuItem";
-            this.privilegiosToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.privilegiosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.privilegiosToolStripMenuItem.Tag = "permisos";
             this.privilegiosToolStripMenuItem.Text = "Permisos";
             this.privilegiosToolStripMenuItem.Click += new System.EventHandler(this.privilegiosToolStripMenuItem_Click);
@@ -217,7 +227,7 @@
             // rolesToolStripMenuItem
             // 
             this.rolesToolStripMenuItem.Name = "rolesToolStripMenuItem";
-            this.rolesToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.rolesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.rolesToolStripMenuItem.Tag = "roles";
             this.rolesToolStripMenuItem.Text = "Roles";
             this.rolesToolStripMenuItem.Click += new System.EventHandler(this.rolesToolStripMenuItem_Click);
@@ -283,13 +293,13 @@
             this.pruebaToolStripMenuItem.Text = "Gestión de Encriptado";
             this.pruebaToolStripMenuItem.Click += new System.EventHandler(this.pruebaToolStripMenuItem_Click);
             // 
-            // matrizDeControlActivaToolStripMenuItem
+            // bitacoraToolStripMenuItem
             // 
-            this.matrizDeControlActivaToolStripMenuItem.Name = "matrizDeControlActivaToolStripMenuItem";
-            this.matrizDeControlActivaToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
-            this.matrizDeControlActivaToolStripMenuItem.Tag = "matriz_activa";
-            this.matrizDeControlActivaToolStripMenuItem.Text = "Matriz de Control Activa";
-            this.matrizDeControlActivaToolStripMenuItem.Click += new System.EventHandler(this.matrizDeControlActivaToolStripMenuItem_Click);
+            this.bitacoraToolStripMenuItem.Name = "bitacoraToolStripMenuItem";
+            this.bitacoraToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.bitacoraToolStripMenuItem.Tag = "bitacora";
+            this.bitacoraToolStripMenuItem.Text = "Bitacora";
+            this.bitacoraToolStripMenuItem.Click += new System.EventHandler(this.bitacoraToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -338,6 +348,7 @@
         private System.Windows.Forms.ToolStripMenuItem periodoDeControlToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem areasDeNegocioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem matrizDeControlActivaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bitacoraToolStripMenuItem;
     }
 }
 

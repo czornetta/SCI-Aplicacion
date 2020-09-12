@@ -13,6 +13,8 @@ using Servicios.MultiIdioma;
 using Servicios.Seguridad;
 using Entidades.Seguridad;
 using Negocio.Seguridad;
+using Entidades.GestionBitacora;
+using Negocio.GestionBitacora;
 
 namespace Presentacion
 {
@@ -26,11 +28,22 @@ namespace Presentacion
         List<Privilegio> lRoles;
         NAreaNegocio nAreaNegocio = new NAreaNegocio();
 
+        NBitacora nBitacora = new NBitacora();
+        Bitacora registro;
+
         public FUsuario()
         {
             InitializeComponent();
             ActualizarIdioma(Sesion.Instancia.Idioma);
             Inicializar();
+        }
+
+        public void RegistrarBitacora()
+        {
+            // registro en Bitacora
+            registro.Fecha = DateTime.Now;
+            registro.Usuario = Sesion.Instancia.Usuario;
+            nBitacora.AgregarRegistro(registro);
         }
 
         private void UpdGrilla()

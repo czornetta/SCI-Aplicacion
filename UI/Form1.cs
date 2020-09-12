@@ -17,6 +17,7 @@ using Entidades.MuiltiIdioma;
 using Negocio.MultiIdioma;
 using Servicios.MultiIdioma;
 using Presentacion.DefMatrizControl;
+using Presentacion.GestionBitacora;
 
 namespace Presentacion
 {
@@ -84,6 +85,7 @@ namespace Presentacion
                 usuariosToolStripMenuItem.Text = diccionario[usuariosToolStripMenuItem.Tag.ToString()];
                 privilegiosToolStripMenuItem.Text = diccionario[privilegiosToolStripMenuItem.Tag.ToString()];
                 rolesToolStripMenuItem.Text = diccionario[rolesToolStripMenuItem.Tag.ToString()];
+                bitacoraToolStripMenuItem.Text = diccionario[bitacoraToolStripMenuItem.Tag.ToString()];
 
                 //Idiomas
                 idiomaToolStripMenuItem1.Text = diccionario[idiomaToolStripMenuItem1.Tag.ToString()];
@@ -135,6 +137,7 @@ namespace Presentacion
                 this.usuariosToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FUsuario);
                 this.privilegiosToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FPermiso);
                 this.rolesToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FRol);
+                this.bitacoraToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FBitacora);
 
                 // Idiomas
                 this.idiomaToolStripMenuItem1.Enabled = Sesion.Instancia.TieneLlave(Llave.FIdioma);
@@ -152,6 +155,7 @@ namespace Presentacion
                 this.usuariosToolStripMenuItem.Enabled = false;
                 this.privilegiosToolStripMenuItem.Enabled = false;
                 this.rolesToolStripMenuItem.Enabled = false;
+                this.bitacoraToolStripMenuItem.Enabled = false;
 
                 // Idiomas
                 this.idiomaToolStripMenuItem.Enabled = false;
@@ -264,6 +268,17 @@ namespace Presentacion
                 FRol f = new FRol();
                 f.MdiParent = this;
                 f.Text = diccionario[rolesToolStripMenuItem.Tag.ToString()];
+                f.Show();
+            }
+        }
+
+        private void bitacoraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FormAbierto("FBitacora"))
+            {
+                FBitacora f = new FBitacora();
+                f.MdiParent = this;
+                f.Text = diccionario[bitacoraToolStripMenuItem.Tag.ToString()];
                 f.Show();
             }
         }

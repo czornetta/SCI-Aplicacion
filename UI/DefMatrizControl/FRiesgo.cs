@@ -15,6 +15,8 @@ using Negocio.Seguridad;
 using Entidades.Seguridad;
 using Negocio.DefMatrizControl;
 using Entidades.DefMatrizControl;
+using Entidades.GestionBitacora;
+using Negocio.GestionBitacora;
 
 namespace Presentacion.DefMatrizControl
 {
@@ -29,12 +31,22 @@ namespace Presentacion.DefMatrizControl
 
         RiesgoPropuesto objCRUD;
 
+        NBitacora nBitacora = new NBitacora();
+        Bitacora registro;
 
         public FRiesgo()
         {
             InitializeComponent();
             ActualizarIdioma(Sesion.Instancia.Idioma);
             Inicializar();
+        }
+
+        public void RegistrarBitacora()
+        {
+            // registro en Bitacora
+            registro.Fecha = DateTime.Now;
+            registro.Usuario = Sesion.Instancia.Usuario;
+            nBitacora.AgregarRegistro(registro);
         }
 
         private void UpdGrilla()
@@ -148,6 +160,11 @@ namespace Presentacion.DefMatrizControl
                 textBox1.Text = "";
                 nRiesgo.AgregarRiesgo(objCRUD);
 
+                // registro en Bitacora
+                registro = new Evento();
+                registro.Descripcion = "Agregado de Riesgo " + objCRUD.ToString();
+                RegistrarBitacora();
+
                 Inicializar();
 
                 MessageBox.Show(diccionario["msg_riesgo_registrado"]);
@@ -166,6 +183,10 @@ namespace Presentacion.DefMatrizControl
 
                 Asignar();
                 nRiesgo.ModificarRiesgo(objCRUD);
+                // registro en Bitacora
+                registro = new Evento();
+                registro.Descripcion = "Modificación de Riesgo " + objCRUD.ToString();
+                RegistrarBitacora();
 
                 Inicializar();
             }
@@ -183,6 +204,10 @@ namespace Presentacion.DefMatrizControl
 
                 Asignar();
                 nRiesgo.BorrarRiesgo(objCRUD);
+                // registro en Bitacora
+                registro = new Evento();
+                registro.Descripcion = "Eliminación de Riesgo " + objCRUD.ToString();
+                RegistrarBitacora();
 
                 Inicializar();
             }

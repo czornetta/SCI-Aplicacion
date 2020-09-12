@@ -13,6 +13,8 @@ using Servicios.Seguridad;
 using Servicios.MultiIdioma;
 using Entidades.MuiltiIdioma;
 using Negocio.MultiIdioma;
+using Entidades.GestionBitacora;
+using Negocio.GestionBitacora;
 
 namespace Presentacion
 {
@@ -23,6 +25,9 @@ namespace Presentacion
         NUsuario _NUsuario = new NUsuario();
         NIdioma nIdioma = new NIdioma();
         Idioma idioma;
+
+        NBitacora nBitacora = new NBitacora();
+        Bitacora registro;
 
         public FIniciarSesion()
         {
@@ -40,6 +45,14 @@ namespace Presentacion
             ActualizarIdioma(idioma);
         }
 
+        public void RegistrarBitacora()
+        {
+            // registro en Bitacora
+            registro.Fecha = DateTime.Now;
+            registro.Usuario = Sesion.Instancia.Usuario;
+            nBitacora.AgregarRegistro(registro);
+        }
+
         private void btnIniciar_Click(object sender, EventArgs e)
         {
             try
@@ -51,6 +64,11 @@ namespace Presentacion
 
                 if (resultado == LoginResult.ValidUser)
                 {
+                    // registro en Bitacora
+                    registro = new Evento();
+                    registro.Descripcion = LoginResult.ValidUser.ToString();
+                    RegistrarBitacora();
+
                     ((Form1)this.MdiParent).SetearMenu();
                     this.Close();
                 }

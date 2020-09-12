@@ -14,6 +14,7 @@ namespace Entidades.Seguridad
         FUsuario,
         FPermiso,
         FRol,
+        FBitacora,
         FIdioma,
         FEtiqueta,
         FTraduccion,

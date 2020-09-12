@@ -7,7 +7,9 @@ using Entidades.Seguridad;
 using Mapeo.Seguridad;
 using Negocio.MultiIdioma;
 using Servicios.Seguridad;
-
+using Entidades.GestionBitacora;
+using Negocio.GestionBitacora;
+using System.IO;
 
 namespace Negocio.Seguridad
 {
@@ -39,7 +41,15 @@ namespace Negocio.Seguridad
                     throw new LoginException(LoginResult.InvalidUsername);
 
                 if (!usuario.Clave.Equals(Cifrado.Cifrar(clave)))
+                {
+                    Bitacora registro = new Error();
+                    registro.Fecha = DateTime.Now;
+                    registro.Usuario = usuario;
+                    registro.Descripcion = LoginResult.InvalidPassword.ToString();
+                    (new NBitacora()).AgregarRegistro(registro);
+                    
                     throw new LoginException(LoginResult.InvalidPassword);
+                }
 
                 Sesion.IniciarSesion(usuario);
                 Sesion.Instancia.Privilegios = (new NPrivilegio()).GetPrivilegios(usuario);

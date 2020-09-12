@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GestionBitacora\Bitacora.cs" />
     <Compile Include="DefMatrizControl\ControlInternoCancelado.cs" />
     <Compile Include="DefMatrizControl\ControlInternoAceptado.cs" />
     <Compile Include="DefMatrizControl\ControlInternoObservado.cs" />
@@ -59,6 +60,8 @@
     <Compile Include="DefMatrizControl\ClasificacionRiesgo.cs" />
     <Compile Include="DefMatrizControl\Riesgo.cs" />
     <Compile Include="DefMatrizControl\MatrizControl.cs" />
+    <Compile Include="GestionBitacora\Error.cs" />
+    <Compile Include="GestionBitacora\Evento.cs" />
     <Compile Include="Seguridad\AreaNegocio.cs" />
     <Compile Include="MuiltiIdioma\Etiqueta.cs" />
     <Compile Include="MuiltiIdioma\Idioma.cs" />
