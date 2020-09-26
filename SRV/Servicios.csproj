@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GestionBackup\Backup.cs" />
+    <Compile Include="GestionBackup\NBackup.cs" />
+    <Compile Include="GestionBackup\Repositorio.cs" />
     <Compile Include="MultiIdioma\IIdioma.cs" />
     <Compile Include="MultiIdioma\IIdiomaObservador.cs" />
     <Compile Include="Seguridad\Privilegio.cs" />

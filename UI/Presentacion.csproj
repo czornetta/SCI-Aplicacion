@@ -76,6 +76,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GestionBackup\FCopiaSeguridad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionBackup\FCopiaSeguridad.Designer.cs">
+      <DependentUpon>FCopiaSeguridad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GestionBackup\FRestaurarBD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionBackup\FRestaurarBD.Designer.cs">
+      <DependentUpon>FRestaurarBD.cs</DependentUpon>
+    </Compile>
     <Compile Include="GestionBitacora\FBitacora.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -230,6 +242,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DefMatrizControl\FRiesgosObservados.resx">
       <DependentUpon>FRiesgosObservados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionBackup\FCopiaSeguridad.resx">
+      <DependentUpon>FCopiaSeguridad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionBackup\FRestaurarBD.resx">
+      <DependentUpon>FRestaurarBD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GestionBitacora\FBitacora.resx">
       <DependentUpon>FBitacora.cs</DependentUpon>

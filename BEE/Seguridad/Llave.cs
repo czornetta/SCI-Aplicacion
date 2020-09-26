@@ -28,6 +28,8 @@ namespace Entidades.Seguridad
         FEvaluarMatrizControl,
         FControlesObservados,
         FMatrizControlInternoVigente,
+        FCopiaSeguridad,
+        FRestaurarBD,
         FPrueba1
     }
 }

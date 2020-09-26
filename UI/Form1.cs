@@ -18,6 +18,7 @@ using Negocio.MultiIdioma;
 using Servicios.MultiIdioma;
 using Presentacion.DefMatrizControl;
 using Presentacion.GestionBitacora;
+using Presentacion.GestionBackup;
 
 namespace Presentacion
 {
@@ -64,6 +65,7 @@ namespace Presentacion
                 seguridadToolStripMenuItem.Text = diccionario[seguridadToolStripMenuItem.Tag.ToString()];
                 idiomaToolStripMenuItem.Text = diccionario[idiomaToolStripMenuItem.Tag.ToString()];
                 pruebasToolStripMenuItem.Text = diccionario[pruebasToolStripMenuItem.Tag.ToString()];
+                administracionToolStripMenuItem.Text = diccionario[administracionToolStripMenuItem.Tag.ToString()];
 
                 //Sesion
                 iniciarSesiónToolStripMenuItem.Text = diccionario[iniciarSesiónToolStripMenuItem.Tag.ToString()];
@@ -92,7 +94,11 @@ namespace Presentacion
                 etiquetasToolStripMenuItem.Text = diccionario[etiquetasToolStripMenuItem.Tag.ToString()];
                 traduccionesToolStripMenuItem.Text = diccionario[traduccionesToolStripMenuItem.Tag.ToString()];
                 cambiarIdiomaToolStripMenuItem.Text = diccionario[cambiarIdiomaToolStripMenuItem.Tag.ToString()];
-                
+
+                // Administracion
+                this.copiaDeSeguridadToolStripMenuItem.Text = diccionario[copiaDeSeguridadToolStripMenuItem.Tag.ToString()];
+                this.restaurarBaseDeDatosToolStripMenuItem.Text = diccionario[restaurarBaseDeDatosToolStripMenuItem.Tag.ToString()];
+
                 //Pruebas
                 pruebaToolStripMenuItem.Text = diccionario[pruebaToolStripMenuItem.Tag.ToString()];
             }
@@ -111,6 +117,7 @@ namespace Presentacion
             this.idiomaToolStripMenuItem.Enabled = Sesion.SesionActiva();
             this.pruebasToolStripMenuItem.Enabled = Sesion.SesionActiva();
             this.matrizDeControlToolStripMenuItem.Enabled = Sesion.SesionActiva();
+            this.administracionToolStripMenuItem.Enabled = Sesion.SesionActiva();
 
             //Sesion
             this.iniciarSesiónToolStripMenuItem.Enabled = !Sesion.SesionActiva();
@@ -145,6 +152,10 @@ namespace Presentacion
                 this.traduccionesToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FTraduccion);
                 this.cambiarIdiomaToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FCambiarIdioma);
 
+                // Administracion
+                this.copiaDeSeguridadToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FCopiaSeguridad);
+                this.restaurarBaseDeDatosToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FRestaurarBD);
+
                 // Pruebas
                 this.pruebaToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FPrueba1);
             }
@@ -162,7 +173,10 @@ namespace Presentacion
                 this.etiquetasToolStripMenuItem.Enabled = false;
                 this.traduccionesToolStripMenuItem.Enabled = false;
                 this.cambiarIdiomaToolStripMenuItem.Enabled = false;
-                
+
+                // Administracion
+                this.copiaDeSeguridadToolStripMenuItem.Enabled = false;
+                this.restaurarBaseDeDatosToolStripMenuItem.Enabled = false;
 
                 // Pruebas
                 this.pruebaToolStripMenuItem.Enabled = false;
@@ -432,6 +446,30 @@ namespace Presentacion
             }
         }
 
+        #endregion
+
+        #region Administracion
+        private void copiaDeSeguridadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FormAbierto("FCopiaSeguridad"))
+            {
+                FCopiaSeguridad f = new FCopiaSeguridad();
+                f.MdiParent = this;
+                f.Text = diccionario[copiaDeSeguridadToolStripMenuItem.Tag.ToString()];
+                f.Show();
+            }
+        }
+
+        private void restaurarBaseDeDatosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FormAbierto("FRestaurarBD"))
+            {
+                FRestaurarBD f = new FRestaurarBD();
+                f.MdiParent = this;
+                f.Text = diccionario[restaurarBaseDeDatosToolStripMenuItem.Tag.ToString()];
+                f.Show();
+            }
+        }
         #endregion
 
         private void pruebaToolStripMenuItem_Click(object sender, EventArgs e)
