@@ -62,6 +62,7 @@
     <Compile Include="DefMatrizControl\MatrizControl.cs" />
     <Compile Include="GestionBitacora\Error.cs" />
     <Compile Include="GestionBitacora\Evento.cs" />
+    <Compile Include="GestionIntegridad\Integridad.cs" />
     <Compile Include="Seguridad\AreaNegocio.cs" />
     <Compile Include="MuiltiIdioma\Etiqueta.cs" />
     <Compile Include="MuiltiIdioma\Idioma.cs" />

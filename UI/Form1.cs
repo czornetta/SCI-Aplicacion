@@ -19,6 +19,8 @@ using Servicios.MultiIdioma;
 using Presentacion.DefMatrizControl;
 using Presentacion.GestionBitacora;
 using Presentacion.GestionBackup;
+using Entidades.GestionIntegridad;
+using Servicios.GestionIntegridad;
 
 namespace Presentacion
 {
@@ -27,6 +29,7 @@ namespace Presentacion
         NIdioma nIdioma = new NIdioma();
         Idioma idioma;
         Dictionary<string, string> diccionario;
+        bool EstadoIntegridad = true;
 
         public Form1()
         {
@@ -34,10 +37,36 @@ namespace Presentacion
 
             Diccionario();
             Traducir();
+            // Control de integridad
+            VerificarIntegridad();
+
             // Login Usuario Leo
-            LoginResult resultado = (new NUsuario()).IniciarSesion("leo", "123");
+            //LoginResult resultado = (new NUsuario()).IniciarSesion("leo", "123");
 
             SetearMenu();
+        }
+
+        public void VerificarIntegridad()
+        {
+            
+            ControlIntegridad control = new ControlIntegridad();
+            List<Integridad> entidades = (new NUsuario()).Leer().ToList<Integridad>();
+
+            try
+            {
+                foreach (var ent in entidades)
+                {
+                    if (!(control.verificarRegistro(ent)))
+                    {
+                        throw new Exception(diccionario["msg_error_integridad"]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                EstadoIntegridad = false;
+                MessageBox.Show(ex.Message, "SCI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void Diccionario()
@@ -126,7 +155,7 @@ namespace Presentacion
             
 
             // Control de llaves
-            if (Sesion.SesionActiva())
+            if (Sesion.SesionActiva() && EstadoIntegridad == true)
             {
                 //Matriz de Control
                 this.periodoDeControlToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FMatrizControlInterno);
@@ -158,6 +187,19 @@ namespace Presentacion
 
                 // Pruebas
                 this.pruebaToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FPrueba1);
+            }
+            else if (Sesion.SesionActiva())
+            {
+                // Menu
+                this.seguridadToolStripMenuItem.Enabled = false;
+                this.idiomaToolStripMenuItem.Enabled = false;
+                this.pruebasToolStripMenuItem.Enabled = false;
+                this.matrizDeControlToolStripMenuItem.Enabled = false;
+
+                // Administracion
+                this.copiaDeSeguridadToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FCopiaSeguridad);
+                this.restaurarBaseDeDatosToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FRestaurarBD);
+
             }
             else
             {

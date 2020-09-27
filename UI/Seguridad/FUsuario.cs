@@ -51,6 +51,9 @@ namespace Presentacion
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = negUsuario.Leer();
             dataGridView1.Columns[2].Visible = false;
+            dataGridView1.Columns[4].Visible = false;
+            dataGridView1.Columns[5].Visible = false;
+
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.MultiSelect = false;
         }

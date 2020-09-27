@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entidades.Seguridad;
+using Servicios.Seguridad;
 using AccesoDatos;
 using System.Collections;
 using System.Data;
@@ -31,8 +32,11 @@ namespace Mapeo.Seguridad
                     param.Add("@nombre", obj.Nombre);
                     param.Add("@clave", obj.Clave);
                     param.Add("@idareanegocio", obj.AreaNegocio.Id);
-                }
 
+                    // digito verificador
+                    param.Add("@dvregistro",  Cifrado.Cifrar(obj.Registro));
+                }
+                
                 (new Acceso()).Escribir(Sql[ope], param);
             }
             catch (Exception ex)
@@ -58,7 +62,8 @@ namespace Mapeo.Seguridad
                            IdUsuario = reg.Field<int>("idusuario"),
                            Nombre = reg.Field<string>("nombre"),
                            Clave = reg.Field<string>("clave"),
-                           AreaNegocio = lAreaNegocio.FirstOrDefault(x => x.Id == reg.Field<int>("idareanegocio"))
+                           AreaNegocio = lAreaNegocio.FirstOrDefault(x => x.Id == reg.Field<int>("idareanegocio")),
+                           DigitoVerificador = reg.Field<string>("dvregistro"),
                        }).ToList <Usuario>();
             }
             catch (Exception ex)

@@ -50,7 +50,7 @@
             // 
             this.button1.Location = new System.Drawing.Point(33, 12);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(114, 32);
+            this.button1.Size = new System.Drawing.Size(177, 32);
             this.button1.TabIndex = 1;
             this.button1.Tag = "realizar_copiabd";
             this.button1.Text = "button1";
@@ -59,9 +59,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(544, 12);
+            this.button2.Location = new System.Drawing.Point(500, 12);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(116, 32);
+            this.button2.Size = new System.Drawing.Size(160, 32);
             this.button2.TabIndex = 2;
             this.button2.Tag = "restaurar_bd";
             this.button2.Text = "button2";
