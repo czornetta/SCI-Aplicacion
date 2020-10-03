@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Collections;
 using System.Data;
+using Entidades.GestionIntegridad;
 
 namespace AccesoDatos
 {
@@ -16,7 +17,7 @@ namespace AccesoDatos
         private SqlCommand Cmd;
         private SqlTransaction Trx;
 
-        public void Escribir(string sql, Hashtable param)
+        public void Escribir(string sql, Hashtable param, DVEntidad dvv=null)
         {
             
             try
@@ -40,6 +41,18 @@ namespace AccesoDatos
                 }
 
                 Cmd.ExecuteNonQuery();
+
+                // Digito verificador vertical
+                if (dvv != null)
+                {
+                    Cmd = new SqlCommand("updDVEntidad", Conn, Trx);
+                    Cmd.CommandType = CommandType.StoredProcedure;
+                    
+                    Cmd.Parameters.AddWithValue("@entidad", dvv.Entidad);
+                    Cmd.Parameters.AddWithValue("@dventidad", dvv.DigitoVerificador);
+                    Cmd.ExecuteNonQuery();
+                }
+
                 Trx.Commit();
                
             }

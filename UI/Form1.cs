@@ -30,6 +30,7 @@ namespace Presentacion
         Idioma idioma;
         Dictionary<string, string> diccionario;
         bool EstadoIntegridad = true;
+        bool ConfiguracionIntegridad = true;
 
         public Form1()
         {
@@ -48,18 +49,25 @@ namespace Presentacion
 
         public void VerificarIntegridad()
         {
-            
-            ControlIntegridad control = new ControlIntegridad();
-            List<Integridad> entidades = (new NUsuario()).Leer().ToList<Integridad>();
+            ControlIntegridad controlIntegridad = new ControlIntegridad();
+            List<Integridad> datos = (new NUsuario()).Leer().ToList<Integridad>();
 
             try
             {
-                foreach (var ent in entidades)
+                if (!(controlIntegridad.VerificarConfiguracion("Usuario")))
                 {
-                    if (!(control.verificarRegistro(ent)))
-                    {
-                        throw new Exception(diccionario["msg_error_integridad"]);
-                    }
+                    ConfiguracionIntegridad = false;
+                    throw new Exception(diccionario["msg_error_conf_integridad"]);
+                }
+
+                if (!(controlIntegridad.VerificarRegistro(datos)))
+                {
+                    throw new Exception(diccionario["msg_error_integridad"]);
+                }
+
+                if (!(controlIntegridad.VerificarEntidad("Usuario", datos)))
+                {
+                    throw new Exception(diccionario["msg_error_integridadE"]);
                 }
             }
             catch (Exception ex)
@@ -127,6 +135,7 @@ namespace Presentacion
                 // Administracion
                 this.copiaDeSeguridadToolStripMenuItem.Text = diccionario[copiaDeSeguridadToolStripMenuItem.Tag.ToString()];
                 this.restaurarBaseDeDatosToolStripMenuItem.Text = diccionario[restaurarBaseDeDatosToolStripMenuItem.Tag.ToString()];
+                this.controlDeIntegridadToolStripMenuItem.Text = diccionario[controlDeIntegridadToolStripMenuItem.Tag.ToString()];
 
                 //Pruebas
                 pruebaToolStripMenuItem.Text = diccionario[pruebaToolStripMenuItem.Tag.ToString()];
@@ -184,7 +193,8 @@ namespace Presentacion
                 // Administracion
                 this.copiaDeSeguridadToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FCopiaSeguridad);
                 this.restaurarBaseDeDatosToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FRestaurarBD);
-
+                this.controlDeIntegridadToolStripMenuItem.Enabled = false;
+                
                 // Pruebas
                 this.pruebaToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FPrueba1);
             }
@@ -200,6 +210,10 @@ namespace Presentacion
                 this.copiaDeSeguridadToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FCopiaSeguridad);
                 this.restaurarBaseDeDatosToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FRestaurarBD);
 
+                if (!ConfiguracionIntegridad)
+                {
+                    this.controlDeIntegridadToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FControlIntegridad);
+                }
             }
             else
             {
@@ -218,6 +232,7 @@ namespace Presentacion
 
                 // Administracion
                 this.copiaDeSeguridadToolStripMenuItem.Enabled = false;
+                this.restaurarBaseDeDatosToolStripMenuItem.Enabled = false;
                 this.restaurarBaseDeDatosToolStripMenuItem.Enabled = false;
 
                 // Pruebas
@@ -512,6 +527,18 @@ namespace Presentacion
                 f.Show();
             }
         }
+
+        private void controlDeIntegridadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FormAbierto("FControlIntegridad"))
+            {
+                FControlIntegridad f = new FControlIntegridad();
+                f.MdiParent = this;
+                f.Text = diccionario[controlDeIntegridadToolStripMenuItem.Tag.ToString()];
+                f.Show();
+            }
+            
+        }
         #endregion
 
         private void pruebaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -552,5 +579,6 @@ namespace Presentacion
             Sesion.Instancia.DesuscribirObservador(this);
         }
 
+        
     }
 }

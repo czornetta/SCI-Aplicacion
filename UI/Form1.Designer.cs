@@ -58,6 +58,7 @@
             this.administracionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copiaDeSeguridadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restaurarBaseDeDatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.controlDeIntegridadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -309,7 +310,8 @@
             // 
             this.administracionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copiaDeSeguridadToolStripMenuItem,
-            this.restaurarBaseDeDatosToolStripMenuItem});
+            this.restaurarBaseDeDatosToolStripMenuItem,
+            this.controlDeIntegridadToolStripMenuItem});
             this.administracionToolStripMenuItem.Name = "administracionToolStripMenuItem";
             this.administracionToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
             this.administracionToolStripMenuItem.Tag = "menu_administacion";
@@ -331,6 +333,14 @@
             this.restaurarBaseDeDatosToolStripMenuItem.Text = "Restaurar Base de Datos";
             this.restaurarBaseDeDatosToolStripMenuItem.Visible = false;
             this.restaurarBaseDeDatosToolStripMenuItem.Click += new System.EventHandler(this.restaurarBaseDeDatosToolStripMenuItem_Click);
+            // 
+            // controlDeIntegridadToolStripMenuItem
+            // 
+            this.controlDeIntegridadToolStripMenuItem.Name = "controlDeIntegridadToolStripMenuItem";
+            this.controlDeIntegridadToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.controlDeIntegridadToolStripMenuItem.Tag = "control_integridad";
+            this.controlDeIntegridadToolStripMenuItem.Text = "Control de Integridad";
+            this.controlDeIntegridadToolStripMenuItem.Click += new System.EventHandler(this.controlDeIntegridadToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -383,6 +393,7 @@
         private System.Windows.Forms.ToolStripMenuItem administracionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copiaDeSeguridadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem restaurarBaseDeDatosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem controlDeIntegridadToolStripMenuItem;
     }
 }
 

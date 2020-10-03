@@ -30,6 +30,7 @@ namespace Entidades.Seguridad
         FMatrizControlInternoVigente,
         FCopiaSeguridad,
         FRestaurarBD,
+        FControlIntegridad,
         FPrueba1
     }
 }

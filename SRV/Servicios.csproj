@@ -45,6 +45,7 @@
     <Compile Include="GestionBackup\NBackup.cs" />
     <Compile Include="GestionBackup\Repositorio.cs" />
     <Compile Include="GestionIntegridad\ControlIntegridad.cs" />
+    <Compile Include="GestionIntegridad\MControlIntegridad.cs" />
     <Compile Include="MultiIdioma\IIdioma.cs" />
     <Compile Include="MultiIdioma\IIdiomaObservador.cs" />
     <Compile Include="Seguridad\Privilegio.cs" />

@@ -76,6 +76,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FControlIntegridad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FControlIntegridad.Designer.cs">
+      <DependentUpon>FControlIntegridad.cs</DependentUpon>
+    </Compile>
     <Compile Include="GestionBackup\FCopiaSeguridad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,6 +248,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DefMatrizControl\FRiesgosObservados.resx">
       <DependentUpon>FRiesgosObservados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FControlIntegridad.resx">
+      <DependentUpon>FControlIntegridad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GestionBackup\FCopiaSeguridad.resx">
       <DependentUpon>FCopiaSeguridad.cs</DependentUpon>
