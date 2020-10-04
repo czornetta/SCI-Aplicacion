@@ -31,6 +31,7 @@ namespace Entidades.Seguridad
         FCopiaSeguridad,
         FRestaurarBD,
         FControlIntegridad,
+        FRiesgoAudit,
         FPrueba1
     }
 }

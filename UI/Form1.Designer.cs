@@ -59,6 +59,7 @@
             this.copiaDeSeguridadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restaurarBaseDeDatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.controlDeIntegridadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.auditoriaRiesgosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -311,7 +312,8 @@
             this.administracionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copiaDeSeguridadToolStripMenuItem,
             this.restaurarBaseDeDatosToolStripMenuItem,
-            this.controlDeIntegridadToolStripMenuItem});
+            this.controlDeIntegridadToolStripMenuItem,
+            this.auditoriaRiesgosToolStripMenuItem});
             this.administracionToolStripMenuItem.Name = "administracionToolStripMenuItem";
             this.administracionToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
             this.administracionToolStripMenuItem.Tag = "menu_administacion";
@@ -341,6 +343,14 @@
             this.controlDeIntegridadToolStripMenuItem.Tag = "control_integridad";
             this.controlDeIntegridadToolStripMenuItem.Text = "Control de Integridad";
             this.controlDeIntegridadToolStripMenuItem.Click += new System.EventHandler(this.controlDeIntegridadToolStripMenuItem_Click);
+            // 
+            // auditoriaRiesgosToolStripMenuItem
+            // 
+            this.auditoriaRiesgosToolStripMenuItem.Name = "auditoriaRiesgosToolStripMenuItem";
+            this.auditoriaRiesgosToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.auditoriaRiesgosToolStripMenuItem.Tag = "auditoria_riesgo";
+            this.auditoriaRiesgosToolStripMenuItem.Text = "Auditoria - Riesgos";
+            this.auditoriaRiesgosToolStripMenuItem.Click += new System.EventHandler(this.auditoriaRiesgosToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -394,6 +404,7 @@
         private System.Windows.Forms.ToolStripMenuItem copiaDeSeguridadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem restaurarBaseDeDatosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem controlDeIntegridadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem auditoriaRiesgosToolStripMenuItem;
     }
 }
 

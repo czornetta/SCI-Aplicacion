@@ -28,8 +28,8 @@ namespace Presentacion
         List<Privilegio> lRoles;
         NAreaNegocio nAreaNegocio = new NAreaNegocio();
 
-        NBitacora nBitacora = new NBitacora();
-        Bitacora registro;
+        //NBitacora nBitacora = new NBitacora();
+        //Bitacora registro;
 
         public FUsuario()
         {
@@ -38,13 +38,13 @@ namespace Presentacion
             Inicializar();
         }
 
-        public void RegistrarBitacora()
-        {
-            // registro en Bitacora
-            registro.Fecha = DateTime.Now;
-            registro.Usuario = Sesion.Instancia.Usuario;
-            nBitacora.AgregarRegistro(registro);
-        }
+        //public void RegistrarBitacora()
+        //{
+        //    // registro en Bitacora
+        //    registro.Fecha = DateTime.Now;
+        //    registro.Usuario = Sesion.Instancia.Usuario;
+        //    nBitacora.AgregarRegistro(registro);
+        //}
 
         private void UpdGrilla()
         {

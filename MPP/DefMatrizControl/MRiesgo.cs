@@ -9,6 +9,7 @@ using System.Collections;
 using System.Data;
 using Mapeo.Seguridad;
 using Entidades.Seguridad;
+using Servicios.Seguridad;
 
 namespace Mapeo.DefMatrizControl
 {
@@ -34,6 +35,7 @@ namespace Mapeo.DefMatrizControl
                         param.Add("@idclasificacionriesgo", obj.Clasificacion.Id);
                         param.Add("@observacion", DBNull.Value);
                         param.Add("@comentario", DBNull.Value);
+                        param.Add("@idusuario", Sesion.Instancia.Usuario.IdUsuario);
                         break;
 
                     case 1:
@@ -58,9 +60,11 @@ namespace Mapeo.DefMatrizControl
                         {
                             param.Add("@comentario", obj.Comentario);
                         }
+                        param.Add("@idusuario", Sesion.Instancia.Usuario.IdUsuario);
                         break;
                     case 2:
                         param.Add("@idRiesgo", obj.Id);
+                        param.Add("@idusuario", Sesion.Instancia.Usuario.IdUsuario);
                         break;
                     default:
                         break;
@@ -144,7 +148,7 @@ namespace Mapeo.DefMatrizControl
                            AreaNegocio = lAreaNegocio.FirstOrDefault(x => x.Id == reg.Field<int>("idareanegocio")),
                            Clasificacion = lClasificacionRiesgo.FirstOrDefault(x => x.Id == reg.Field<int>("idclasificacionriesgo")),
                            Observacion = reg.Field<string>("observacion"),
-                           Comentario = reg.Field<string>("comentario"),
+                           Comentario = reg.Field<string>("comentario")
                        }).ToList();
 
                 return res;

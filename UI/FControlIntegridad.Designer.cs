@@ -46,12 +46,12 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(131, 41);
+            this.button1.Location = new System.Drawing.Point(102, 41);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(122, 23);
             this.button1.TabIndex = 61;
             this.button1.Tag = "boton_consultar";
-            this.button1.Text = "Agregar";
+            this.button1.Text = "configurar_integridad";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 

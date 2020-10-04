@@ -76,6 +76,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auditoria\FRiesgoAudit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Auditoria\FRiesgoAudit.Designer.cs">
+      <DependentUpon>FRiesgoAudit.cs</DependentUpon>
+    </Compile>
     <Compile Include="FControlIntegridad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -222,6 +228,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Auditoria\FRiesgoAudit.resx">
+      <DependentUpon>FRiesgoAudit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DefMatrizControl\FControlesObservados.resx">
       <DependentUpon>FControlesObservados.cs</DependentUpon>
     </EmbeddedResource>

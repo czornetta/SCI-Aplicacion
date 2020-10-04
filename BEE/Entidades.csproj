@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auditoria\RiesgoAudit.cs" />
     <Compile Include="GestionBitacora\Bitacora.cs" />
     <Compile Include="DefMatrizControl\ControlInternoCancelado.cs" />
     <Compile Include="DefMatrizControl\ControlInternoAceptado.cs" />

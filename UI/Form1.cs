@@ -21,6 +21,7 @@ using Presentacion.GestionBitacora;
 using Presentacion.GestionBackup;
 using Entidades.GestionIntegridad;
 using Servicios.GestionIntegridad;
+using Presentacion.Auditoria;
 
 namespace Presentacion
 {
@@ -42,7 +43,7 @@ namespace Presentacion
             VerificarIntegridad();
 
             // Login Usuario Leo
-            //LoginResult resultado = (new NUsuario()).IniciarSesion("leo", "123");
+            LoginResult resultado = (new NUsuario()).IniciarSesion("leo", "123");
 
             SetearMenu();
         }
@@ -136,6 +137,7 @@ namespace Presentacion
                 this.copiaDeSeguridadToolStripMenuItem.Text = diccionario[copiaDeSeguridadToolStripMenuItem.Tag.ToString()];
                 this.restaurarBaseDeDatosToolStripMenuItem.Text = diccionario[restaurarBaseDeDatosToolStripMenuItem.Tag.ToString()];
                 this.controlDeIntegridadToolStripMenuItem.Text = diccionario[controlDeIntegridadToolStripMenuItem.Tag.ToString()];
+                this.auditoriaRiesgosToolStripMenuItem.Text = diccionario[auditoriaRiesgosToolStripMenuItem.Tag.ToString()];
 
                 //Pruebas
                 pruebaToolStripMenuItem.Text = diccionario[pruebaToolStripMenuItem.Tag.ToString()];
@@ -194,7 +196,8 @@ namespace Presentacion
                 this.copiaDeSeguridadToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FCopiaSeguridad);
                 this.restaurarBaseDeDatosToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FRestaurarBD);
                 this.controlDeIntegridadToolStripMenuItem.Enabled = false;
-                
+                this.auditoriaRiesgosToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FRiesgoAudit);
+
                 // Pruebas
                 this.pruebaToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FPrueba1);
             }
@@ -209,6 +212,7 @@ namespace Presentacion
                 // Administracion
                 this.copiaDeSeguridadToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FCopiaSeguridad);
                 this.restaurarBaseDeDatosToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FRestaurarBD);
+                this.auditoriaRiesgosToolStripMenuItem.Enabled = false;
 
                 if (!ConfiguracionIntegridad)
                 {
@@ -234,6 +238,7 @@ namespace Presentacion
                 this.copiaDeSeguridadToolStripMenuItem.Enabled = false;
                 this.restaurarBaseDeDatosToolStripMenuItem.Enabled = false;
                 this.restaurarBaseDeDatosToolStripMenuItem.Enabled = false;
+                this.auditoriaRiesgosToolStripMenuItem.Enabled = false;
 
                 // Pruebas
                 this.pruebaToolStripMenuItem.Enabled = false;
@@ -539,6 +544,16 @@ namespace Presentacion
             }
             
         }
+
+        private void auditoriaRiesgosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FRiesgoAudit f = new FRiesgoAudit();
+            f.MdiParent = this;
+            f.Text = diccionario[auditoriaRiesgosToolStripMenuItem.Tag.ToString()];
+            f.Show();
+            
+        }
+
         #endregion
 
         private void pruebaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -578,7 +593,5 @@ namespace Presentacion
         {
             Sesion.Instancia.DesuscribirObservador(this);
         }
-
-        
     }
 }

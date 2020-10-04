@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auditoria\MRiesgoAudit.cs" />
     <Compile Include="GestionBitacora\MBitacora.cs" />
     <Compile Include="DefMatrizControl\MClasificacionRiesgo.cs" />
     <Compile Include="DefMatrizControl\MEstadoMatrizControl.cs" />
