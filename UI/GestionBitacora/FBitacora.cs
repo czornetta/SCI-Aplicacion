@@ -39,12 +39,14 @@ namespace Presentacion.GestionBitacora
             try
             {
                 dataGridView1.DataSource = null;
-                
+
                 dataGridView1.DataSource = nBitacora.Registros((Usuario)comboBox1.SelectedItem
                                                             , comboBox2.Text
                                                             , dateTimePicker1.Value
                                                             , dateTimePicker2.Value);
 
+                dataGridView1.Columns[1].Width=130;
+                dataGridView1.Columns[2].Width = 200;
                 dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dataGridView1.MultiSelect = false;
             }

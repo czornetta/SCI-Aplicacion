@@ -43,7 +43,7 @@ namespace Presentacion
             VerificarIntegridad();
 
             // Login Usuario Leo
-            LoginResult resultado = (new NUsuario()).IniciarSesion("leo", "123");
+            //LoginResult resultado = (new NUsuario()).IniciarSesion("leo", "123");
 
             SetearMenu();
         }

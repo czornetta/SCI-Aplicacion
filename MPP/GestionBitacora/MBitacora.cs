@@ -68,6 +68,7 @@ namespace Mapeo.GestionBitacora
                 if (tipo =="Error")
                 {
                     registros = (from reg in ((new Acceso()).Leer(Sql[1], param)).Tables[0].AsEnumerable()
+                                 orderby reg.Field<DateTime>("fecha") descending
                                  select new Error
                                  {
                                      Usuario = lUsuario.FirstOrDefault(x => x.IdUsuario == reg.Field<int>("idusuario")),
@@ -78,6 +79,7 @@ namespace Mapeo.GestionBitacora
                 }
                 else
                     registros = (from reg in ((new Acceso()).Leer(Sql[1], param)).Tables[0].AsEnumerable()
+                                 orderby reg.Field<DateTime>("fecha") descending
                                  select new Evento
                                  {
                                      Usuario = lUsuario.FirstOrDefault(x => x.IdUsuario == reg.Field<int>("idusuario")),
