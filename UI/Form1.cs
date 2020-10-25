@@ -71,6 +71,8 @@ namespace Presentacion
                 {
                     throw new Exception(diccionario["msg_error_integridadE"]);
                 }
+
+                EstadoIntegridad = true;
             }
             catch (Exception ex)
             {
@@ -331,7 +333,9 @@ namespace Presentacion
 
         private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!FormAbierto("FUsuario"))
+            VerificarIntegridad();
+            
+            if (!FormAbierto("FUsuario") && EstadoIntegridad)
             {
                 FUsuario f = new FUsuario();
                 f.MdiParent = this;
