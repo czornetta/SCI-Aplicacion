@@ -92,8 +92,8 @@ namespace Mapeo.DefMatrizControl
                 param.Add("@nombre", obj.Nombre);
                 param.Add("@idclasificacionriesgo", obj.Clasificacion.Id);
                 param.Add("@idestadoriesgo", estado.Id);
-                
-                    
+                param.Add("@idusuario", Sesion.Instancia.Usuario.IdUsuario);
+
                 if (obj.Observacion == null)
                 {
                     param.Add("@observacion", DBNull.Value);

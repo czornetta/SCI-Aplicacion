@@ -60,6 +60,10 @@
             this.restaurarBaseDeDatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.controlDeIntegridadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.auditoriaRiesgosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.controlInternoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.certificarControlesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.evaluarExcepcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.informeDeResultadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,6 +72,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sesiónToolStripMenuItem,
             this.matrizDeControlToolStripMenuItem,
+            this.controlInternoToolStripMenuItem,
             this.seguridadToolStripMenuItem,
             this.idiomaToolStripMenuItem,
             this.pruebasToolStripMenuItem,
@@ -352,6 +357,41 @@
             this.auditoriaRiesgosToolStripMenuItem.Text = "Auditoria - Riesgos";
             this.auditoriaRiesgosToolStripMenuItem.Click += new System.EventHandler(this.auditoriaRiesgosToolStripMenuItem_Click);
             // 
+            // controlInternoToolStripMenuItem
+            // 
+            this.controlInternoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.certificarControlesToolStripMenuItem,
+            this.evaluarExcepcionesToolStripMenuItem,
+            this.informeDeResultadosToolStripMenuItem});
+            this.controlInternoToolStripMenuItem.Name = "controlInternoToolStripMenuItem";
+            this.controlInternoToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
+            this.controlInternoToolStripMenuItem.Tag = "etiqueta_controlInterno";
+            this.controlInternoToolStripMenuItem.Text = "Control Interno";
+            // 
+            // certificarControlesToolStripMenuItem
+            // 
+            this.certificarControlesToolStripMenuItem.Name = "certificarControlesToolStripMenuItem";
+            this.certificarControlesToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.certificarControlesToolStripMenuItem.Tag = "certificar_control";
+            this.certificarControlesToolStripMenuItem.Text = "Certificar Controles";
+            this.certificarControlesToolStripMenuItem.Click += new System.EventHandler(this.certificarControlesToolStripMenuItem_Click);
+            // 
+            // evaluarExcepcionesToolStripMenuItem
+            // 
+            this.evaluarExcepcionesToolStripMenuItem.Name = "evaluarExcepcionesToolStripMenuItem";
+            this.evaluarExcepcionesToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.evaluarExcepcionesToolStripMenuItem.Tag = "evaluar_excepcion";
+            this.evaluarExcepcionesToolStripMenuItem.Text = "Evaluar Excepciones";
+            this.evaluarExcepcionesToolStripMenuItem.Click += new System.EventHandler(this.evaluarExcepcionesToolStripMenuItem_Click);
+            // 
+            // informeDeResultadosToolStripMenuItem
+            // 
+            this.informeDeResultadosToolStripMenuItem.Name = "informeDeResultadosToolStripMenuItem";
+            this.informeDeResultadosToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.informeDeResultadosToolStripMenuItem.Tag = "informe_resultado";
+            this.informeDeResultadosToolStripMenuItem.Text = "Informe de Resultados";
+            this.informeDeResultadosToolStripMenuItem.Click += new System.EventHandler(this.informeDeResultadosToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -405,6 +445,10 @@
         private System.Windows.Forms.ToolStripMenuItem restaurarBaseDeDatosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem controlDeIntegridadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem auditoriaRiesgosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem controlInternoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem certificarControlesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem evaluarExcepcionesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem informeDeResultadosToolStripMenuItem;
     }
 }
 

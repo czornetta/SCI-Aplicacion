@@ -166,5 +166,17 @@ namespace Negocio.DefMatrizControl
             return res;
         }
 
+        public IList<ControlInterno> GetControlesInternos(MatrizControl matrizControl, AreaNegocio areaNegocio)
+        {
+            List<ControlInterno> controles = new List<ControlInterno>();
+
+
+            foreach (var item in (new NRiesgoAceptado()).GetRiesgosAreaNegocio(matrizControl, areaNegocio))
+            {
+                controles.AddRange((new NControlInternoAceptado()).GetControlesInternos(item));
+            }
+
+            return controles;
+        }
     }
 }

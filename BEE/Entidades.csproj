@@ -43,6 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auditoria\RiesgoAudit.cs" />
+    <Compile Include="Certificaciones\Certificacion.cs" />
+    <Compile Include="Certificaciones\Excepcion.cs" />
+    <Compile Include="Certificaciones\Incidente.cs" />
+    <Compile Include="Certificaciones\EstadoExcepcion.cs" />
+    <Compile Include="Certificaciones\ResultadoCertificacion.cs" />
     <Compile Include="GestionBitacora\Bitacora.cs" />
     <Compile Include="DefMatrizControl\ControlInternoCancelado.cs" />
     <Compile Include="DefMatrizControl\ControlInternoAceptado.cs" />

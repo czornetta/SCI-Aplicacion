@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auditoria\NRiesgoAudit.cs" />
+    <Compile Include="Certificaciones\NCertificacion.cs" />
     <Compile Include="GestionBitacora\NBitacora.cs" />
     <Compile Include="DefMatrizControl\NEstadoControlInterno.cs" />
     <Compile Include="DefMatrizControl\NPeriodicidadControl.cs" />

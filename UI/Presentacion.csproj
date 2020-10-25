@@ -82,6 +82,24 @@
     <Compile Include="Auditoria\FRiesgoAudit.Designer.cs">
       <DependentUpon>FRiesgoAudit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Certificaciones\FCertificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Certificaciones\FCertificar.Designer.cs">
+      <DependentUpon>FCertificar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Certificaciones\FEvaluarExcepcion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Certificaciones\FEvaluarExcepcion.Designer.cs">
+      <DependentUpon>FEvaluarExcepcion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Certificaciones\FInformeResultado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Certificaciones\FInformeResultado.Designer.cs">
+      <DependentUpon>FInformeResultado.cs</DependentUpon>
+    </Compile>
     <Compile Include="FControlIntegridad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -230,6 +248,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Auditoria\FRiesgoAudit.resx">
       <DependentUpon>FRiesgoAudit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Certificaciones\FCertificar.resx">
+      <DependentUpon>FCertificar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Certificaciones\FEvaluarExcepcion.resx">
+      <DependentUpon>FEvaluarExcepcion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Certificaciones\FInformeResultado.resx">
+      <DependentUpon>FInformeResultado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DefMatrizControl\FControlesObservados.resx">
       <DependentUpon>FControlesObservados.cs</DependentUpon>

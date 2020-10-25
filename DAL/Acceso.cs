@@ -12,6 +12,7 @@ namespace AccesoDatos
 {
     public class Acceso
     {
+        //private string StringConn = @"Data Source=(local);Initial Catalog=SCIDB;Integrated Security=True";
         private string StringConn = @"Data Source=.\SQLEXPRESS;Initial Catalog=SCIDB;Integrated Security=True";
         private SqlConnection Conn = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=SCIDB;Integrated Security=True");
         private SqlCommand Cmd;
@@ -68,6 +69,49 @@ namespace AccesoDatos
             }
             
         }
+
+        //public int Escribir(string sql, Hashtable param)
+        //{
+
+        //    try
+        //    {
+        //        if (Conn.State == ConnectionState.Closed)
+        //        {
+        //            Conn.ConnectionString = StringConn;
+        //            Conn.Open();
+        //        }
+
+        //        Trx = Conn.BeginTransaction();
+        //        Cmd = new SqlCommand(sql, Conn, Trx);
+        //        Cmd.CommandType = CommandType.StoredProcedure;
+
+        //        if (param.Count > 0)
+        //        {
+        //            foreach (string p in param.Keys)
+        //            {
+        //                Cmd.Parameters.AddWithValue(p, param[p]);
+        //            }
+        //        }
+
+        //        int id = Cmd.ExecuteNonQuery();
+                                
+
+        //        Trx.Commit();
+
+        //        return id;
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        Trx.Rollback();
+        //        throw new Exception(ex.Message);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Trx.Rollback();
+        //        throw new Exception(ex.Message);
+        //    }
+
+        //}
 
         public DataSet Leer(string sql, Hashtable param)
         {

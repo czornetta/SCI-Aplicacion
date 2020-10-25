@@ -32,6 +32,9 @@ namespace Entidades.Seguridad
         FRestaurarBD,
         FControlIntegridad,
         FRiesgoAudit,
+        FCertificar,
+        FEvaluarExcepcion,
+        FInformeResultado,
         FPrueba1
     }
 }

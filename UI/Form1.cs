@@ -22,6 +22,7 @@ using Presentacion.GestionBackup;
 using Entidades.GestionIntegridad;
 using Servicios.GestionIntegridad;
 using Presentacion.Auditoria;
+using Presentacion.Certificaciones;
 
 namespace Presentacion
 {
@@ -43,7 +44,7 @@ namespace Presentacion
             VerificarIntegridad();
 
             // Login Usuario Leo
-            //LoginResult resultado = (new NUsuario()).IniciarSesion("leo", "123");
+            LoginResult resultado = (new NUsuario()).IniciarSesion("leo", "123");
 
             SetearMenu();
         }
@@ -100,6 +101,7 @@ namespace Presentacion
                 //Submenu
                 sesiónToolStripMenuItem.Text = diccionario[sesiónToolStripMenuItem.Tag.ToString()];
                 matrizDeControlToolStripMenuItem.Text = diccionario[matrizDeControlToolStripMenuItem.Tag.ToString()];
+                controlInternoToolStripMenuItem.Text = diccionario[controlInternoToolStripMenuItem.Tag.ToString()];
                 seguridadToolStripMenuItem.Text = diccionario[seguridadToolStripMenuItem.Tag.ToString()];
                 idiomaToolStripMenuItem.Text = diccionario[idiomaToolStripMenuItem.Tag.ToString()];
                 pruebasToolStripMenuItem.Text = diccionario[pruebasToolStripMenuItem.Tag.ToString()];
@@ -119,6 +121,11 @@ namespace Presentacion
                 evaluarMatrizDeControlToolStripMenuItem.Text = diccionario[evaluarMatrizDeControlToolStripMenuItem.Tag.ToString()];
                 controlesObservadosToolStripMenuItem.Text = diccionario[controlesObservadosToolStripMenuItem.Tag.ToString()];
                 matrizDeControlActivaToolStripMenuItem.Text = diccionario[matrizDeControlActivaToolStripMenuItem.Tag.ToString()];
+
+                // Control Interno
+                certificarControlesToolStripMenuItem.Text = diccionario[certificarControlesToolStripMenuItem.Tag.ToString()];
+                evaluarExcepcionesToolStripMenuItem.Text = diccionario[evaluarExcepcionesToolStripMenuItem.Tag.ToString()];
+                informeDeResultadosToolStripMenuItem.Text = diccionario[informeDeResultadosToolStripMenuItem.Tag.ToString()];
 
                 //Seguridad
                 areasDeNegocioToolStripMenuItem.Text = diccionario[areasDeNegocioToolStripMenuItem.Tag.ToString()];
@@ -158,6 +165,7 @@ namespace Presentacion
             this.pruebasToolStripMenuItem.Enabled = Sesion.SesionActiva();
             this.matrizDeControlToolStripMenuItem.Enabled = Sesion.SesionActiva();
             this.administracionToolStripMenuItem.Enabled = Sesion.SesionActiva();
+            this.controlInternoToolStripMenuItem.Enabled = Sesion.SesionActiva();
 
             //Sesion
             this.iniciarSesiónToolStripMenuItem.Enabled = !Sesion.SesionActiva();
@@ -178,6 +186,11 @@ namespace Presentacion
                 this.evaluarMatrizDeControlToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FEvaluarMatrizControl);
                 this.controlesObservadosToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FControlesObservados);
                 this.matrizDeControlActivaToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FMatrizControlInternoVigente);
+
+                // Control Interno
+                this.certificarControlesToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FCertificar);
+                this.evaluarExcepcionesToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FEvaluarExcepcion);
+                this.informeDeResultadosToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FInformeResultado);
 
                 //Seguridad
                 this.areasDeNegocioToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FAreaNegocio);
@@ -208,6 +221,7 @@ namespace Presentacion
                 this.idiomaToolStripMenuItem.Enabled = false;
                 this.pruebasToolStripMenuItem.Enabled = false;
                 this.matrizDeControlToolStripMenuItem.Enabled = false;
+                this.controlInternoToolStripMenuItem.Enabled = false;
 
                 // Administracion
                 this.copiaDeSeguridadToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FCopiaSeguridad);
@@ -554,6 +568,41 @@ namespace Presentacion
             
         }
 
+        #endregion
+
+        #region Control Interno
+        private void certificarControlesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FormAbierto("FCertificar"))
+            {
+                FCertificar f = new FCertificar();
+                f.MdiParent = this;
+                f.Text = diccionario[certificarControlesToolStripMenuItem.Tag.ToString()];
+                f.Show();
+            }
+        }
+
+        private void evaluarExcepcionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FormAbierto("FEvaluarExcepcion"))
+            {
+                FEvaluarExcepcion f = new FEvaluarExcepcion();
+                f.MdiParent = this;
+                f.Text = diccionario[evaluarExcepcionesToolStripMenuItem.Tag.ToString()];
+                f.Show();
+            }
+        }
+
+        private void informeDeResultadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FormAbierto("FInformeResultado"))
+            {
+                FInformeResultado f = new FInformeResultado();
+                f.MdiParent = this;
+                f.Text = diccionario[informeDeResultadosToolStripMenuItem.Tag.ToString()];
+                f.Show();
+            }
+        }
         #endregion
 
         private void pruebaToolStripMenuItem_Click(object sender, EventArgs e)
