@@ -60,6 +60,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 13);
             this.label1.TabIndex = 1;
+            this.label1.Tag = "controles_internos";
             this.label1.Text = "Controles";
             // 
             // dataGridView2
@@ -79,6 +80,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
+            this.button1.Tag = "boton_certificar";
             this.button1.Text = "Certificar";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -98,6 +100,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 13);
             this.label2.TabIndex = 5;
+            this.label2.Tag = "etiqueta_resultado";
             this.label2.Text = "Resultado";
             // 
             // textBox1
@@ -115,6 +118,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(39, 13);
             this.label3.TabIndex = 89;
+            this.label3.Tag = "etiqueta_,motivo";
             this.label3.Text = "Motivo";
             // 
             // label4
@@ -124,6 +128,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(76, 13);
             this.label4.TabIndex = 90;
+            this.label4.Tag = "etiqueta_certificaciones";
             this.label4.Text = "Certificaciones";
             // 
             // FCertificar

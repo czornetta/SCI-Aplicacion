@@ -36,7 +36,6 @@ namespace Mapeo.Certificaciones
                     case 1:
                         param.Add("@idcertificacion", obj.Id);
                         param.Add("@idresultado", obj.Resultado.Id);
-
                         break;
                     //case 2:
                     //    param.Add("@idcontrolinterno", obj.Id);
@@ -45,10 +44,10 @@ namespace Mapeo.Certificaciones
                         break;
                 }
 
-                if (obj.Incidente.Id > 0)
-                {
-                    param.Add("@idincidente", obj.Incidente.Id);                    
-                }
+                //if (obj.Incidente.Id > 0)
+                //{
+                //    param.Add("@idincidente", obj.Incidente.Id);                    
+                //}
 
                 if (obj.Incidente.Descripcion != null)
                 {
@@ -98,7 +97,7 @@ namespace Mapeo.Certificaciones
 
             try
             {
-                param.Add("@idexcepcion", obj.Id);
+                param.Add("@idexcepcion", obj.Excepcion.Id);
                 param.Add("@idestadoexcepcion", obj.Excepcion.Estado.Id);
 
                 (new Acceso()).Escribir("updExcepcion", param);
@@ -160,6 +159,8 @@ namespace Mapeo.Certificaciones
 
                 foreach (var cer in res)
                 {
+                    cer.Certificacion.ControlInterno = control;
+
                     if (cer.Excepcion.Id > 0)
                     {
                         cer.Certificacion.Excepcion.Id = cer.Excepcion.Id;
@@ -201,6 +202,30 @@ namespace Mapeo.Certificaciones
                                 Nombre = reg.Field<string>("nombre")
                                
                            }).ToList<ResultadoCertificacion>();
+
+                return res;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<EstadoExcepcion> GetEstadosExcepcion()
+        {
+            Hashtable param = new Hashtable();
+
+            try
+            {
+                var res = (from reg in ((new Acceso()).Leer("getEstadosExcepcion", param)).Tables[0].AsEnumerable()
+                           select new EstadoExcepcion
+                           {
+                               Id = reg.Field<int>("idestado"),
+                               Nombre = reg.Field<string>("nombre")
+
+                           }).ToList<EstadoExcepcion>();
 
                 return res;
 

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Entidades.Certificaciones;
 using Entidades.DefMatrizControl;
+using Negocio.DefMatrizControl;
 
 namespace Negocio.Certificaciones
 {
@@ -18,7 +19,7 @@ namespace Negocio.Certificaciones
 
         public void AceptarExcepcion(Certificacion obj)
         {
-            obj.Excepcion.Estado = new EstadoExcepcion { Id = 1 };
+            obj.Excepcion.Estado = new EstadoExcepcion { Id = 2 };
             (new MCertificacion()).UpdateExcepcion(obj);
         }
 
@@ -37,6 +38,23 @@ namespace Negocio.Certificaciones
         public List<ResultadoCertificacion> GetResultadosCertificaciones()
         {
             return (new MCertificacion()).GetResultadosCertificaciones();
+        }
+
+        public List<EstadoExcepcion> GetEstadosExcepcion()
+        {
+            return (new MCertificacion()).GetEstadosExcepcion();
+        }
+
+        public List<Certificacion> GetCertificaciones(MatrizControl obj)
+        {
+            MCertificacion mCertificacion = new MCertificacion();
+            List<Certificacion> certificaciones = new List<Certificacion>();
+
+            foreach (var item in (new NMatrizControl()).GetControlesInternos(obj))
+            {
+                certificaciones.AddRange(mCertificacion.GetCertificaciones((ControlInternoAceptado)item));
+            }
+            return certificaciones;
         }
     }
 }

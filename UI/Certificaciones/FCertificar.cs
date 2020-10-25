@@ -98,12 +98,12 @@ namespace Presentacion.Certificaciones
             {
                 if (controlInterno == null)
                 {
-                    throw new Exception("No hay control seleccionado");
+                    throw new Exception(diccionario["msg_selecionar_control"]);
                 }
 
                 if (comboBox1.SelectedItem == null)
                 {
-                    throw new Exception("No hay resultado seleccionado");
+                    throw new Exception(diccionario["msg_selecionar_resultado"]);
                 }
                                 
                 certificacion = new Certificacion();
@@ -114,7 +114,7 @@ namespace Presentacion.Certificaciones
 
                 if (textBox1.Text == "" && certificacion.Resultado.Id != 1)
                 {
-                    throw new Exception("Debe ingresar un motivo");
+                    throw new Exception(diccionario["msg_ingresar_motivo"]);
                 }
 
                 if (certificacion.Resultado.Id == 2 )
@@ -131,7 +131,6 @@ namespace Presentacion.Certificaciones
                 }
 
                 nCertificacion.AddCertificacion(certificacion);
-                //controlInterno = null;
 
                 UpdGrillaCertificaciones();
             }
