@@ -7,14 +7,18 @@ using System.Data.SqlClient;
 using System.Collections;
 using System.Data;
 using Entidades.GestionIntegridad;
+using System.Configuration;
 
 namespace AccesoDatos
 {
     public class Acceso
     {
         //private string StringConn = @"Data Source=(local);Initial Catalog=SCIDB;Integrated Security=True";
-        private string StringConn = @"Data Source=.\SQLEXPRESS;Initial Catalog=SCIDB;Integrated Security=True";
-        private SqlConnection Conn = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=SCIDB;Integrated Security=True");
+        //private string StringConn = @"Data Source=.\SQLEXPRESS;Initial Catalog=SCIDB;Integrated Security=True";
+        //private SqlConnection Conn = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=SCIDB;Integrated Security=True");
+        private string StringConn = ConfigurationManager.ConnectionStrings["SCIDBConnectionString"].ConnectionString;
+        private SqlConnection Conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SCIDBConnectionString"].ConnectionString);
+
         private SqlCommand Cmd;
         private SqlTransaction Trx;
 
