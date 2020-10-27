@@ -106,6 +106,12 @@
     <Compile Include="FControlIntegridad.Designer.cs">
       <DependentUpon>FControlIntegridad.cs</DependentUpon>
     </Compile>
+    <Compile Include="GestionBackup\FBaseDeDatos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionBackup\FBaseDeDatos.Designer.cs">
+      <DependentUpon>FBaseDeDatos.cs</DependentUpon>
+    </Compile>
     <Compile Include="GestionBackup\FCopiaSeguridad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -287,6 +293,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FControlIntegridad.resx">
       <DependentUpon>FControlIntegridad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionBackup\FBaseDeDatos.resx">
+      <DependentUpon>FBaseDeDatos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GestionBackup\FCopiaSeguridad.resx">
       <DependentUpon>FCopiaSeguridad.cs</DependentUpon>

@@ -42,6 +42,10 @@
             this.evaluarMatrizDeControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.controlesObservadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.matrizDeControlActivaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.controlInternoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.certificarControlesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.evaluarExcepcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.informeDeResultadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seguridadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.areasDeNegocioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,10 +64,6 @@
             this.restaurarBaseDeDatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.controlDeIntegridadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.auditoriaRiesgosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.controlInternoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.certificarControlesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.evaluarExcepcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.informeDeResultadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,6 +88,7 @@
             this.sesiónToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.iniciarSesiónToolStripMenuItem,
             this.cerrarSesiónToolStripMenuItem});
+            this.sesiónToolStripMenuItem.Enabled = false;
             this.sesiónToolStripMenuItem.Name = "sesiónToolStripMenuItem";
             this.sesiónToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.sesiónToolStripMenuItem.Tag = "menu_sesion";
@@ -96,7 +97,7 @@
             // iniciarSesiónToolStripMenuItem
             // 
             this.iniciarSesiónToolStripMenuItem.Name = "iniciarSesiónToolStripMenuItem";
-            this.iniciarSesiónToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.iniciarSesiónToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.iniciarSesiónToolStripMenuItem.Tag = "iniciar_sesion";
             this.iniciarSesiónToolStripMenuItem.Text = "Iniciar Sesión";
             this.iniciarSesiónToolStripMenuItem.Click += new System.EventHandler(this.iniciarSesiónToolStripMenuItem_Click);
@@ -104,7 +105,7 @@
             // cerrarSesiónToolStripMenuItem
             // 
             this.cerrarSesiónToolStripMenuItem.Name = "cerrarSesiónToolStripMenuItem";
-            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cerrarSesiónToolStripMenuItem.Tag = "cerrar_sesion";
             this.cerrarSesiónToolStripMenuItem.Text = "Cerrar Sesión";
             this.cerrarSesiónToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesiónToolStripMenuItem_Click);
@@ -197,6 +198,41 @@
             this.matrizDeControlActivaToolStripMenuItem.Tag = "matriz_activa";
             this.matrizDeControlActivaToolStripMenuItem.Text = "Matriz de Control Activa";
             this.matrizDeControlActivaToolStripMenuItem.Click += new System.EventHandler(this.matrizDeControlActivaToolStripMenuItem_Click);
+            // 
+            // controlInternoToolStripMenuItem
+            // 
+            this.controlInternoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.certificarControlesToolStripMenuItem,
+            this.evaluarExcepcionesToolStripMenuItem,
+            this.informeDeResultadosToolStripMenuItem});
+            this.controlInternoToolStripMenuItem.Name = "controlInternoToolStripMenuItem";
+            this.controlInternoToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
+            this.controlInternoToolStripMenuItem.Tag = "etiqueta_controlInterno";
+            this.controlInternoToolStripMenuItem.Text = "Control Interno";
+            // 
+            // certificarControlesToolStripMenuItem
+            // 
+            this.certificarControlesToolStripMenuItem.Name = "certificarControlesToolStripMenuItem";
+            this.certificarControlesToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.certificarControlesToolStripMenuItem.Tag = "certificar_control";
+            this.certificarControlesToolStripMenuItem.Text = "Certificar Controles";
+            this.certificarControlesToolStripMenuItem.Click += new System.EventHandler(this.certificarControlesToolStripMenuItem_Click);
+            // 
+            // evaluarExcepcionesToolStripMenuItem
+            // 
+            this.evaluarExcepcionesToolStripMenuItem.Name = "evaluarExcepcionesToolStripMenuItem";
+            this.evaluarExcepcionesToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.evaluarExcepcionesToolStripMenuItem.Tag = "evaluar_excepcion";
+            this.evaluarExcepcionesToolStripMenuItem.Text = "Evaluar Excepciones";
+            this.evaluarExcepcionesToolStripMenuItem.Click += new System.EventHandler(this.evaluarExcepcionesToolStripMenuItem_Click);
+            // 
+            // informeDeResultadosToolStripMenuItem
+            // 
+            this.informeDeResultadosToolStripMenuItem.Name = "informeDeResultadosToolStripMenuItem";
+            this.informeDeResultadosToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.informeDeResultadosToolStripMenuItem.Tag = "informe_resultado";
+            this.informeDeResultadosToolStripMenuItem.Text = "Informe de Resultados";
+            this.informeDeResultadosToolStripMenuItem.Click += new System.EventHandler(this.informeDeResultadosToolStripMenuItem_Click);
             // 
             // seguridadToolStripMenuItem
             // 
@@ -356,41 +392,6 @@
             this.auditoriaRiesgosToolStripMenuItem.Tag = "auditoria_riesgo";
             this.auditoriaRiesgosToolStripMenuItem.Text = "Auditoria - Riesgos";
             this.auditoriaRiesgosToolStripMenuItem.Click += new System.EventHandler(this.auditoriaRiesgosToolStripMenuItem_Click);
-            // 
-            // controlInternoToolStripMenuItem
-            // 
-            this.controlInternoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.certificarControlesToolStripMenuItem,
-            this.evaluarExcepcionesToolStripMenuItem,
-            this.informeDeResultadosToolStripMenuItem});
-            this.controlInternoToolStripMenuItem.Name = "controlInternoToolStripMenuItem";
-            this.controlInternoToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
-            this.controlInternoToolStripMenuItem.Tag = "etiqueta_controlInterno";
-            this.controlInternoToolStripMenuItem.Text = "Control Interno";
-            // 
-            // certificarControlesToolStripMenuItem
-            // 
-            this.certificarControlesToolStripMenuItem.Name = "certificarControlesToolStripMenuItem";
-            this.certificarControlesToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.certificarControlesToolStripMenuItem.Tag = "certificar_control";
-            this.certificarControlesToolStripMenuItem.Text = "Certificar Controles";
-            this.certificarControlesToolStripMenuItem.Click += new System.EventHandler(this.certificarControlesToolStripMenuItem_Click);
-            // 
-            // evaluarExcepcionesToolStripMenuItem
-            // 
-            this.evaluarExcepcionesToolStripMenuItem.Name = "evaluarExcepcionesToolStripMenuItem";
-            this.evaluarExcepcionesToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.evaluarExcepcionesToolStripMenuItem.Tag = "evaluar_excepcion";
-            this.evaluarExcepcionesToolStripMenuItem.Text = "Evaluar Excepciones";
-            this.evaluarExcepcionesToolStripMenuItem.Click += new System.EventHandler(this.evaluarExcepcionesToolStripMenuItem_Click);
-            // 
-            // informeDeResultadosToolStripMenuItem
-            // 
-            this.informeDeResultadosToolStripMenuItem.Name = "informeDeResultadosToolStripMenuItem";
-            this.informeDeResultadosToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.informeDeResultadosToolStripMenuItem.Tag = "informe_resultado";
-            this.informeDeResultadosToolStripMenuItem.Text = "Informe de Resultados";
-            this.informeDeResultadosToolStripMenuItem.Click += new System.EventHandler(this.informeDeResultadosToolStripMenuItem_Click);
             // 
             // Form1
             // 

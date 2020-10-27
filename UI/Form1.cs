@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 using Entidades.Seguridad;
 using Negocio.Seguridad;
 using Servicios.Seguridad;
@@ -23,6 +24,7 @@ using Entidades.GestionIntegridad;
 using Servicios.GestionIntegridad;
 using Presentacion.Auditoria;
 using Presentacion.Certificaciones;
+using Servicios.GestionBackup;
 
 namespace Presentacion
 {
@@ -33,20 +35,81 @@ namespace Presentacion
         Dictionary<string, string> diccionario;
         bool EstadoIntegridad = true;
         bool ConfiguracionIntegridad = true;
+        bool BaseDeDatos = false;
 
         public Form1()
         {
             InitializeComponent();
 
-            Diccionario();
-            Traducir();
-            // Control de integridad
-            VerificarIntegridad();
+            Inicializar();
+        }
 
-            // Login Usuario Leo
-            LoginResult resultado = (new NUsuario()).IniciarSesion("leo", "123");
+        public void Inicializar()
+        {
+            try
+            {
+                VerificarBD();
 
-            SetearMenu();
+                // Idioma
+                Diccionario();
+                Traducir();
+
+                // Control de integridad
+                VerificarIntegridad();
+
+                // Login Usuario Leo
+                //LoginResult resultado = (new NUsuario()).IniciarSesion("leo", "123");
+
+                SetearMenu();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void VerificarBD()
+        {
+            try
+            {
+                Repositorio repo = new Repositorio();
+
+                BaseDeDatos = repo.TestBD();
+
+                if (!(BaseDeDatos))
+                {
+                    //FBaseDeDatos f = new FBaseDeDatos();
+                    //f.MdiParent = this;
+                    //f.Show();
+                    MessageBox.Show("La base de datos NO se encuentra instalada. Desea Instalarla ?");
+
+                    TextReader sqlFile = new StreamReader("ScriptSCIPruebaBD.sql");
+                    string sql = sqlFile.ReadToEnd();
+
+                    repo.CrearBD(sql);
+
+                    sqlFile = new StreamReader("ScriptSCIPruebaTP.sql");
+                    sql = sqlFile.ReadToEnd();
+
+                    repo.CrearBD(sql);
+
+                    BaseDeDatos = repo.TestBD();
+
+                    if (BaseDeDatos)
+                    {
+                        MessageBox.Show("Base creada correctamente");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al instalar la Base de Datos, contacte al Servicio de Soporte Técnico.");
+                    }
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+               MessageBox.Show(ex.Message);
+            }
         }
 
         public void VerificarIntegridad()
@@ -160,8 +223,13 @@ namespace Presentacion
         }
 
         public void SetearMenu()
-        { 
+        {
             // Menu
+            if (BaseDeDatos)
+            {
+                this.sesiónToolStripMenuItem.Enabled = true;
+            }
+
             this.seguridadToolStripMenuItem.Enabled = Sesion.SesionActiva();
             this.idiomaToolStripMenuItem.Enabled = Sesion.SesionActiva();
             this.pruebasToolStripMenuItem.Enabled = Sesion.SesionActiva();
