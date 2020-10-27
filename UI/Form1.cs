@@ -50,17 +50,21 @@ namespace Presentacion
             {
                 VerificarBD();
 
-                // Idioma
-                Diccionario();
-                Traducir();
+                if (BaseDeDatos)
+                {
+                    // Idioma
+                    Diccionario();
+                    Traducir();
 
-                // Control de integridad
-                VerificarIntegridad();
+                    // Control de integridad
+                    VerificarIntegridad();
 
-                // Login Usuario Leo
-                //LoginResult resultado = (new NUsuario()).IniciarSesion("leo", "123");
+                    // Login Usuario Leo
+                    //LoginResult resultado = (new NUsuario()).IniciarSesion("leo", "123");
 
-                SetearMenu();
+                    SetearMenu();
+                }
+                
             }
             catch (Exception ex)
             {
@@ -78,32 +82,32 @@ namespace Presentacion
 
                 if (!(BaseDeDatos))
                 {
-                    //FBaseDeDatos f = new FBaseDeDatos();
-                    //f.MdiParent = this;
-                    //f.Show();
-                    MessageBox.Show("La base de datos NO se encuentra instalada. Desea Instalarla ?");
-
-                    TextReader sqlFile = new StreamReader("ScriptSCIPruebaBD.sql");
-                    string sql = sqlFile.ReadToEnd();
-
-                    repo.CrearBD(sql);
-
-                    sqlFile = new StreamReader("ScriptSCIPruebaTP.sql");
-                    sql = sqlFile.ReadToEnd();
-
-                    repo.CrearBD(sql);
-
-                    BaseDeDatos = repo.TestBD();
-
-                    if (BaseDeDatos)
+                    if (MessageBox.Show("La base de datos NO se encuentra instalada. Desea Instalarla ?", "SCI",
+                    MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                     {
+                        this.Cursor = Cursors.WaitCursor;
+                        
+                        TextReader sqlFile = new StreamReader("ScriptSCIPruebaBD.sql");
+                        string sql = sqlFile.ReadToEnd();
+
+                        repo.CrearBD(sql);
+
+                        sqlFile = new StreamReader("ScriptSCIPruebaTP.sql");
+                        sql = sqlFile.ReadToEnd();
+
+                        repo.CrearBD(sql);
+
+                        BaseDeDatos = true;
+                        this.Cursor = Cursors.Default;
+
                         MessageBox.Show("Base creada correctamente");
                     }
                     else
                     {
-                        MessageBox.Show("Error al instalar la Base de Datos, contacte al Servicio de Soporte Técnico.");
+                        MessageBox.Show("La Aplicación de Cerrará.");
+                        this.Close();
+                        Application.Exit();
                     }
-                    
                 }
             }
             catch (Exception ex)
@@ -707,12 +711,14 @@ namespace Presentacion
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
             Sesion.Instancia.SuscribirObservador(this);
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Sesion.Instancia.DesuscribirObservador(this);
+                Sesion.Instancia.DesuscribirObservador(this);
+            
         }
     }
 }

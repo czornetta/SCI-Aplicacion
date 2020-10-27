@@ -168,22 +168,30 @@ namespace Servicios.GestionBackup
 
                 while (Conn.State == ConnectionState.Connecting)
                 {
-
+                    test = false;
                 } 
 
                 if (Conn.State == ConnectionState.Open)
                 {
                     test = true;
                 }
-                Conn.Close();
+                
             }
-            catch (SqlException)
+
+            catch (SqlException exsql)
             {
                 test = false;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 test = false;
+            }
+            finally
+            {
+                if (Conn.State != ConnectionState.Closed)
+                {
+                    Conn.Close();
+                }
             }
 
             return test;
