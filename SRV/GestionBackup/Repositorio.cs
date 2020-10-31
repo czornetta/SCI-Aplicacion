@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Collections;
 using System.Data;
+//using System.Data.Sql;
 using Entidades.Seguridad;
 using Servicios.Seguridad;
 using System.Configuration;
 using System.Text.RegularExpressions;
+using Microsoft.Win32;
 
 namespace Servicios.GestionBackup
 {
@@ -54,7 +56,7 @@ namespace Servicios.GestionBackup
             try
             {
 
-                Conn.ConnectionString = @"Data Source=.\SQLEXPRESS;Database=master;Integrated Security=True";
+                Conn.ConnectionString = ConfigurationManager.ConnectionStrings["MasterConnectionString"].ConnectionString;
 
                 Conn.Open();
                 string sqlrestore = @"ALTER DATABASE SCIDB
@@ -132,7 +134,8 @@ namespace Servicios.GestionBackup
                     Conn.Close();    
                 }
 
-                Conn.ConnectionString = @"Data Source=.\SQLEXPRESS;Database=master;Integrated Security=True";
+                Conn.ConnectionString = ConfigurationManager.ConnectionStrings["MasterConnectionString"].ConnectionString;
+                
                 Conn.Open();
 
                 Cmd = new SqlCommand();
@@ -196,5 +199,37 @@ namespace Servicios.GestionBackup
 
             return test;
         }
+
+        public List<string> GetInstancias()
+        {
+            List<string> instancias = new List<string>();
+
+            try
+            {
+                
+                string ServerName = Environment.MachineName;
+                RegistryView registryView = Environment.Is64BitOperatingSystem ? RegistryView.Registry64 : RegistryView.Registry32;
+                using (RegistryKey hklm = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, registryView))
+                {
+                    RegistryKey instanceKey = hklm.OpenSubKey(@"SOFTWARE\Microsoft\Microsoft SQL Server\Instance Names\SQL", false);
+                    if (instanceKey != null)
+                    {
+                        foreach (var instanceName in instanceKey.GetValueNames())
+                        {
+                            instancias.Add(".\\" + instanceName);
+                        }
+                    }
+                }
+                
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            
+            return instancias;
+        }
+        
     }
 }

@@ -14,34 +14,56 @@ namespace Presentacion.GestionBackup
 {
     public partial class FBaseDeDatos : Form
     {
+        InstanciaBD InstanciaBD = new InstanciaBD();
+        NInstanciaBD nInstanciaBD = new NInstanciaBD();
+
         public FBaseDeDatos()
         {
             InitializeComponent();
+            Inicializar();
+        }
+
+        public void Inicializar()
+        {
+            comboBox1.DataSource = nInstanciaBD.GetInstancias();
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
+        {            
             try
             {
-                TextReader sqlFile = new StreamReader("ScriptBASE.sql");
-                string sql = sqlFile.ReadToEnd();
-                
-                (new Repositorio()).CrearBD(sql);
+                if (comboBox1.SelectedItem == null)
+                {
+                    throw new Exception("Debe seleccionar una Instancia de Base de datos");
+                }
+
+                this.Cursor = Cursors.WaitCursor;
+
+                InstanciaBD.Nombre = comboBox1.SelectedItem.ToString();
+
+                nInstanciaBD.CrearBD();
+
+                this.Cursor = Cursors.Default;
 
                 MessageBox.Show("Base creada correctamente");
 
-                sqlFile = new StreamReader("ScriptBASEPRUEBA1.sql");
-                sql = sqlFile.ReadToEnd();
-
-                (new Repositorio()).CrearBD(sql);
-
-                MessageBox.Show("Tablas y procesos creados");
-
                 this.Close();
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void FBaseDeDatos_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (!(InstanciaBD.EstadoBD))
+            {
+                MessageBox.Show("No se ha creado la base datos para la aplicación. La Aplicación de Cerrará.");
+                
+                Application.Exit();
+
             }
         }
     }

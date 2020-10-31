@@ -35,7 +35,7 @@ namespace Presentacion
         Dictionary<string, string> diccionario;
         bool EstadoIntegridad = true;
         bool ConfiguracionIntegridad = true;
-        bool BaseDeDatos = false;
+        InstanciaBD InstanciaBD = new InstanciaBD();
 
         public Form1()
         {
@@ -50,7 +50,7 @@ namespace Presentacion
             {
                 VerificarBD();
 
-                if (BaseDeDatos)
+                if (InstanciaBD.EstadoBD)
                 {
                     // Idioma
                     Diccionario();
@@ -78,29 +78,14 @@ namespace Presentacion
             {
                 Repositorio repo = new Repositorio();
 
-                BaseDeDatos = repo.TestBD();
-
-                if (!(BaseDeDatos))
+                if (!(InstanciaBD.EstadoBD))
                 {
-                    if (MessageBox.Show("La base de datos NO se encuentra instalada. Desea Instalarla ?", "SCI",
+                    if (MessageBox.Show("La base de datos NO se encuentra instalada.      Desea Instalarla ?", "SCI",
                     MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                     {
-                        this.Cursor = Cursors.WaitCursor;
+                        FBaseDeDatos f = new FBaseDeDatos();
                         
-                        TextReader sqlFile = new StreamReader("ScriptSCIPruebaBD.sql");
-                        string sql = sqlFile.ReadToEnd();
-
-                        repo.CrearBD(sql);
-
-                        sqlFile = new StreamReader("ScriptSCIPruebaTP.sql");
-                        sql = sqlFile.ReadToEnd();
-
-                        repo.CrearBD(sql);
-
-                        BaseDeDatos = true;
-                        this.Cursor = Cursors.Default;
-
-                        MessageBox.Show("Base creada correctamente");
+                        f.ShowDialog();
                     }
                     else
                     {
@@ -229,10 +214,7 @@ namespace Presentacion
         public void SetearMenu()
         {
             // Menu
-            if (BaseDeDatos)
-            {
-                this.sesiónToolStripMenuItem.Enabled = true;
-            }
+            this.sesiónToolStripMenuItem.Enabled = true;
 
             this.seguridadToolStripMenuItem.Enabled = Sesion.SesionActiva();
             this.idiomaToolStripMenuItem.Enabled = Sesion.SesionActiva();

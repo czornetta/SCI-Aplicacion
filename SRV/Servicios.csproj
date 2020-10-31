@@ -43,7 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GestionBackup\Backup.cs" />
+    <Compile Include="GestionBackup\InstanciaBD.cs" />
     <Compile Include="GestionBackup\NBackup.cs" />
+    <Compile Include="GestionBackup\NInstanciaBD.cs" />
     <Compile Include="GestionBackup\Repositorio.cs" />
     <Compile Include="GestionIntegridad\ControlIntegridad.cs" />
     <Compile Include="GestionIntegridad\MControlIntegridad.cs" />
