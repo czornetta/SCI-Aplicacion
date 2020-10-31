@@ -27,7 +27,6 @@ namespace Presentacion.Auditoria
 
         NMatrizControl nMatrizControl = new NMatrizControl();
         NAreaNegocio nAreaNegocio = new NAreaNegocio();
-        //NRiesgo nRiesgo = new NRiesgo();
 
         NRiesgoAudit nRiesgoAudit = new NRiesgoAudit();
         RiesgoAudit riesgoAudit;
@@ -40,7 +39,7 @@ namespace Presentacion.Auditoria
             Inicializar();
         }
 
-        private void UpdGrilla()
+        public void UpdGrilla()
         {
             try
             {
@@ -193,7 +192,6 @@ namespace Presentacion.Auditoria
 
         private void comboBox1_Validated(object sender, EventArgs e)
         {
-            //MessageBox.Show("1");
             UpdGrilla();
         }
 

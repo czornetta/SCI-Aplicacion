@@ -17,6 +17,7 @@ using Negocio.DefMatrizControl;
 using Entidades.DefMatrizControl;
 using Entidades.GestionBitacora;
 using Negocio.GestionBitacora;
+using Presentacion.Auditoria;
 
 namespace Presentacion.DefMatrizControl
 {
@@ -92,6 +93,7 @@ namespace Presentacion.DefMatrizControl
 
             button2.Enabled = false;
             button3.Enabled = false;
+            button4.Enabled = false;
         }
 
         private void SetearCombos()
@@ -218,6 +220,34 @@ namespace Presentacion.DefMatrizControl
             }
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                FRiesgoAudit f = new FRiesgoAudit();
+                f.textBox1.Text = objCRUD.Id.ToString();
+                f.textBox2.Text = objCRUD.Nombre;
+                f.comboBox1.Text = objCRUD.AreaNegocio.Nombre;
+                f.comboBox3.Text = objCRUD.MatrizControl.Periodo.ToString();
+
+                f.textBox1.Enabled = false;
+                f.textBox2.Enabled = false;
+                f.comboBox1.Enabled = false;
+                f.comboBox2.Visible = false;
+                f.comboBox3.Enabled = false;
+
+                f.UpdGrilla();
+                f.ShowDialog();
+
+                Inicializar();
+            }
+            catch (Exception ex)
+            {
+MessageBox.Show(ex.Message);
+            }
+        }
+
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             textBox1.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
@@ -232,7 +262,7 @@ namespace Presentacion.DefMatrizControl
             button1.Enabled = true;
             button2.Enabled = true;
             button3.Enabled = true;
-
+            button4.Enabled = true;
         }
 
         public void ActualizarIdioma(Idioma idioma)
@@ -266,7 +296,5 @@ namespace Presentacion.DefMatrizControl
         {
             Sesion.Instancia.SuscribirObservador(this);
         }
-
-
     }
 }
