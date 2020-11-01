@@ -69,7 +69,8 @@ namespace Presentacion.Certificaciones
         {
             try
             {
-                PdfWriter pdfWriter = new PdfWriter("SCIInformeResultado.pdf");
+                string archivo = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)+@"\SCIInformeResultado.pdf";
+                PdfWriter pdfWriter = new PdfWriter(archivo);
                 PdfDocument pdf = new PdfDocument(pdfWriter);
                 Document informe = new Document(pdf, PageSize.A4);
                 informe.SetMargins(60,20,55,20);
@@ -128,16 +129,11 @@ namespace Presentacion.Certificaciones
                 }
 
                 informe.Add(grilla);
-
-                
-                
-                
-
-
-
                 informe.Close();
 
-                MessageBox.Show("OK");
+                //MessageBox.Show(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
+                
+                System.Diagnostics.Process.Start(archivo);
             }
             catch (Exception ex)
             {
