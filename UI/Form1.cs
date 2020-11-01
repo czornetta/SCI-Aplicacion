@@ -196,7 +196,7 @@ namespace Presentacion
 
                 // Administracion
                 this.copiaDeSeguridadToolStripMenuItem.Text = diccionario[copiaDeSeguridadToolStripMenuItem.Tag.ToString()];
-                this.restaurarBaseDeDatosToolStripMenuItem.Text = diccionario[restaurarBaseDeDatosToolStripMenuItem.Tag.ToString()];
+                
                 this.controlDeIntegridadToolStripMenuItem.Text = diccionario[controlDeIntegridadToolStripMenuItem.Tag.ToString()];
                 this.auditoriaRiesgosToolStripMenuItem.Text = diccionario[auditoriaRiesgosToolStripMenuItem.Tag.ToString()];
 
@@ -263,7 +263,6 @@ namespace Presentacion
 
                 // Administracion
                 this.copiaDeSeguridadToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FCopiaSeguridad);
-                this.restaurarBaseDeDatosToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FRestaurarBD);
                 this.controlDeIntegridadToolStripMenuItem.Enabled = false;
                 this.auditoriaRiesgosToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FRiesgoAudit);
 
@@ -281,7 +280,6 @@ namespace Presentacion
 
                 // Administracion
                 this.copiaDeSeguridadToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FCopiaSeguridad);
-                this.restaurarBaseDeDatosToolStripMenuItem.Enabled = Sesion.Instancia.TieneLlave(Llave.FRestaurarBD);
                 this.auditoriaRiesgosToolStripMenuItem.Enabled = false;
 
                 if (!ConfiguracionIntegridad)
@@ -306,8 +304,6 @@ namespace Presentacion
 
                 // Administracion
                 this.copiaDeSeguridadToolStripMenuItem.Enabled = false;
-                this.restaurarBaseDeDatosToolStripMenuItem.Enabled = false;
-                this.restaurarBaseDeDatosToolStripMenuItem.Enabled = false;
                 this.auditoriaRiesgosToolStripMenuItem.Enabled = false;
 
                 // Pruebas
@@ -594,17 +590,6 @@ namespace Presentacion
             }
         }
 
-        private void restaurarBaseDeDatosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!FormAbierto("FRestaurarBD"))
-            {
-                FRestaurarBD f = new FRestaurarBD();
-                f.MdiParent = this;
-                f.Text = diccionario[restaurarBaseDeDatosToolStripMenuItem.Tag.ToString()];
-                f.Show();
-            }
-        }
-
         private void controlDeIntegridadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!FormAbierto("FControlIntegridad"))
@@ -702,5 +687,6 @@ namespace Presentacion
                 Sesion.Instancia.DesuscribirObservador(this);
             
         }
+
     }
 }

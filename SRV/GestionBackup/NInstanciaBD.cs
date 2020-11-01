@@ -18,12 +18,12 @@ namespace Servicios.GestionBackup
         {
             Repositorio repo = new Repositorio();
 
-            TextReader sqlFile = new StreamReader("ScriptSCIPruebaBD.sql");
+            TextReader sqlFile = new StreamReader("ScriptSCIDB.sql");
             string sql = sqlFile.ReadToEnd();
 
             repo.CrearBD(sql);
 
-            sqlFile = new StreamReader("ScriptSCIPruebaTP.sql");
+            sqlFile = new StreamReader("ScriptSCITP.sql");
             sql = sqlFile.ReadToEnd();
 
             repo.CrearBD(sql);

@@ -55,19 +55,18 @@ namespace Servicios.GestionBackup
 
             try
             {
-
+                string baseDatos = ConfigurationManager.AppSettings["dataBase"].ToString();
                 Conn.ConnectionString = ConfigurationManager.ConnectionStrings["MasterConnectionString"].ConnectionString;
 
                 Conn.Open();
-                string sqlrestore = @"ALTER DATABASE SCIDB
+                string sqlrestore = @"ALTER DATABASE {0}
                                         SET SINGLE_USER
                                         WITH ROLLBACK IMMEDIATE
-                                        RESTORE DATABASE SCIDB FROM DISK = '";
+                                        RESTORE DATABASE {0} FROM DISK = '{1}';";
 
-                sqlrestore = string.Concat(sqlrestore,bkp.Archivo,"';");
-                
-                //throw new Exception(sqlrestore);
-                
+                //sqlrestore = string.Concat(sqlrestore,bkp.Archivo,"';");
+                sqlrestore = string.Format(sqlrestore, baseDatos,bkp.Archivo);
+
                 Cmd = new SqlCommand(sqlrestore, Conn);
                 Cmd.CommandType = CommandType.Text;
 

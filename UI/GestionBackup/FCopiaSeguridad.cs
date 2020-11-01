@@ -13,6 +13,7 @@ using Servicios.Seguridad;
 using Entidades.MuiltiIdioma;
 using Servicios.MultiIdioma;
 using Servicios.GestionBackup;
+using Negocio.Seguridad;
 
 namespace Presentacion.GestionBackup
 {
@@ -82,8 +83,11 @@ namespace Presentacion.GestionBackup
                         this.Cursor = Cursors.Default;
                         backup = null;
                         MessageBox.Show(diccionario["msg_copia_restaurada"]);
-                        UpdGrilla();
-                        
+
+                        (new NUsuario()).CerrarSesion();
+
+                        ((Form1)this.MdiParent).SetearMenu();
+                        this.Close();
                     }
                 }
                 else

@@ -13,14 +13,12 @@ namespace Servicios.GestionBackup
         {
             get
             {
-                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-
-                return config.ConnectionStrings.ConnectionStrings["SCIDBConnectionString"].ConnectionString;
+                return ConfigurationManager.ConnectionStrings["SCIDBConnectionString"].ConnectionString;
             }
             set
             {
-                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                 string dataSource = ConfigurationManager.AppSettings["dataSource"].ToString();
+                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
                 config.ConnectionStrings.ConnectionStrings["SCIDBConnectionString"].ConnectionString.Replace(dataSource,value);
                 config.ConnectionStrings.ConnectionStrings["MasterConnectionString"].ConnectionString.Replace(dataSource, value);

@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Entidades.Certificaciones;
 using Entidades.DefMatrizControl;
 using Negocio.DefMatrizControl;
+using Entidades.Seguridad;
+using System.Collections;
 
 namespace Negocio.Certificaciones
 {
@@ -55,6 +57,11 @@ namespace Negocio.Certificaciones
                 certificaciones.AddRange(mCertificacion.GetCertificaciones((ControlInternoAceptado)item));
             }
             return certificaciones;
+        }
+
+        public IList GetResumenCertificaciones(MatrizControl obj)
+        {
+            return (new MCertificacion()).GetResumenCertificaciones(obj);
         }
     }
 }

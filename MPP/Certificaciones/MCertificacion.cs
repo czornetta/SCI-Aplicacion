@@ -236,5 +236,36 @@ namespace Mapeo.Certificaciones
                 throw new Exception(ex.Message);
             }
         }
+
+        public IList GetResumenCertificaciones(MatrizControl obj)
+        {
+            Hashtable param = new Hashtable();
+
+            if (obj != null)
+                param.Add("@idmatrizcontrol", obj.Id);
+            else
+                param.Add("@idmatrizcontrol", DBNull.Value);
+
+            try
+            {
+                var res = (from reg in ((new Acceso()).Leer("getResumenCertificacion", param)).Tables[0].AsEnumerable()
+                           select new 
+                           {
+                               AreaNegocio = reg.Field<string>("areanegocio"),
+                               ControlInterno = reg.Field<string>("controlinterno"),
+                               CantidadCertificaciones = reg.Field<int>("q_certificacion"),
+                               CantidadExcepciones = reg.Field<int>("q_excepcion"),
+                               CantidadIncidentes = reg.Field<int>("q_incidente")
+                           }).ToList();
+
+                return res;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
