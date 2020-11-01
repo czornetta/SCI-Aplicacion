@@ -69,11 +69,23 @@ namespace Presentacion
                     registro.Descripcion = LoginResult.ValidUser.ToString();
                     RegistrarBitacora();
 
+                    // serializar usuario
+                    if (checkBox1.Checked)
+                    {
+                        Usuario usr = new Usuario { Nombre = Sesion.Instancia.Usuario.Nombre, Clave = tBClave.Text };
+                        _NUsuario.RecordarClave(usr);
+                    }
+                    else
+                    {
+                        Usuario usr = new Usuario { Nombre = Sesion.Instancia.Usuario.Nombre, Clave = tBClave.Text };
+                        _NUsuario.OlvidarClave(usr);
+                    }
+
+                    // setear menu
                     ((Form1)this.MdiParent).SetearMenu();
                     this.Close();
                 }
                     
-
             }
             catch (LoginException ex)
             {
@@ -97,6 +109,29 @@ namespace Presentacion
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void tBNombre_Validated(object sender, EventArgs e)
+        {
+            try
+            {
+                if (tBNombre.Text != "")
+                {
+                    Usuario usr = _NUsuario.ObtenerClave(tBNombre.Text);
+
+                    if (usr != null)
+                    {
+                        tBClave.Text = usr.Clave;
+                        checkBox1.Checked = true;
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+
+            }
+
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

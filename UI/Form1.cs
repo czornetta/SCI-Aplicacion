@@ -60,7 +60,7 @@ namespace Presentacion
                     VerificarIntegridad();
 
                     // Login Usuario Leo
-                    LoginResult resultado = (new NUsuario()).IniciarSesion("admin", "123");
+                    //LoginResult resultado = (new NUsuario()).IniciarSesion("admin", "123");
 
                     SetearMenu();
                 }

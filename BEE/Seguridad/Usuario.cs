@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Entidades.Seguridad
 {
+    [Serializable]
     public class Usuario:Integridad
     {
         public int IdUsuario { get; set; }

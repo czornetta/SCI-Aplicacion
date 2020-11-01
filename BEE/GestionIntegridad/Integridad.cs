@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Entidades.GestionIntegridad
 {
+    [Serializable]
     public abstract class Integridad
     {
         public abstract string Registro { get; }

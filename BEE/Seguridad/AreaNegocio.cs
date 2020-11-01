@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entidades.Seguridad
 {
+    [Serializable]
     public class AreaNegocio
     {
         public int Id { get; set; }

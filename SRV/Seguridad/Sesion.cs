@@ -16,7 +16,6 @@ namespace Servicios.Seguridad
         private static Sesion _instancia;
 
         private Idioma _idioma;
-        //private Dictionary<string, string> _diccionario;
         
         private List<IIdiomaObservador> _idiomaObservadores = new List<IIdiomaObservador>();
 
