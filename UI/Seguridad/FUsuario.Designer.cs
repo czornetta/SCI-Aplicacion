@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -48,6 +49,8 @@
             this.button5 = new System.Windows.Forms.Button();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -78,6 +81,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(189, 20);
             this.textBox1.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.textBox1, "tp_nombreUsuario");
             // 
             // textBox2
             // 
@@ -86,6 +90,7 @@
             this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(189, 20);
             this.textBox2.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.textBox2, "tp_contraseniaUsuario");
             // 
             // dataGridView1
             // 
@@ -107,6 +112,7 @@
             this.button1.TabIndex = 5;
             this.button1.Tag = "boton_agregar";
             this.button1.Text = "Agregar";
+            this.toolTip1.SetToolTip(this.button1, "tp_agregarUsuario");
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -118,6 +124,7 @@
             this.button2.TabIndex = 6;
             this.button2.Tag = "boton_modificar";
             this.button2.Text = "Modificar";
+            this.toolTip1.SetToolTip(this.button2, "tp_modificarUsuario");
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -129,6 +136,7 @@
             this.button3.TabIndex = 7;
             this.button3.Tag = "boton_borrar";
             this.button3.Text = "Borrar";
+            this.toolTip1.SetToolTip(this.button3, "tp_borrarUsuario");
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -156,6 +164,7 @@
             this.textBox4.PasswordChar = '*';
             this.textBox4.Size = new System.Drawing.Size(189, 20);
             this.textBox4.TabIndex = 10;
+            this.toolTip1.SetToolTip(this.textBox4, "tp_recontraseniaUsuario");
             // 
             // label4
             // 
@@ -196,6 +205,7 @@
             this.button4.TabIndex = 2;
             this.button4.Tag = "boton_agregar";
             this.button4.Text = "Agregar";
+            this.toolTip1.SetToolTip(this.button4, "tp_agregarRol");
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -206,6 +216,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(195, 21);
             this.comboBox1.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.comboBox1, "tp_rolUsuario");
             // 
             // label5
             // 
@@ -225,6 +236,7 @@
             this.button5.TabIndex = 14;
             this.button5.Tag = "boton_sacar_rol";
             this.button5.Text = "Sacar Rol";
+            this.toolTip1.SetToolTip(this.button5, "tp_sacarRol");
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -235,6 +247,7 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(189, 21);
             this.comboBox2.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.comboBox2, "tp_areaNegocio");
             // 
             // label6
             // 
@@ -245,6 +258,15 @@
             this.label6.TabIndex = 15;
             this.label6.Tag = "etiqueta_areaNegocio";
             this.label6.Text = "Area de Negocio";
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.toolTip1.IsBalloon = true;
+            // 
+            // helpProvider1
+            // 
+            this.helpProvider1.HelpNamespace = "SCl-Ayuda.chm";
             // 
             // FUsuario
             // 
@@ -268,7 +290,11 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.HelpButton = true;
+            this.helpProvider1.SetHelpKeyword(this, "Usuarios");
+            this.helpProvider1.SetHelpNavigator(this, System.Windows.Forms.HelpNavigator.KeywordIndex);
             this.Name = "FUsuario";
+            this.helpProvider1.SetShowHelp(this, true);
             this.Text = "FUsuario";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FUsuario_FormClosing);
             this.Load += new System.EventHandler(this.FUsuario_Load);
@@ -302,5 +328,7 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

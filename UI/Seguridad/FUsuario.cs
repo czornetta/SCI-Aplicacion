@@ -306,18 +306,37 @@ namespace Presentacion
 
             try
             {
-                label1.Text = diccionario[label1.Tag.ToString()];
-                label2.Text = diccionario[label2.Tag.ToString()];
-                label4.Text = diccionario[label4.Tag.ToString()];
-                label5.Text = diccionario[label5.Tag.ToString()];
-                groupBox1.Text = diccionario[groupBox1.Tag.ToString()];
 
-                button1.Text = diccionario[button1.Tag.ToString()];
-                button2.Text = diccionario[button2.Tag.ToString()];
-                button3.Text = diccionario[button3.Tag.ToString()];
-                button4.Text = diccionario[button4.Tag.ToString()];
-                button5.Text = diccionario[button5.Tag.ToString()];
+                foreach (Control item in this.Controls)
+                {
+                    // Etiquetas
+                    if (item.Tag != null)
+                    {
+                        item.Text = diccionario[item.Tag.ToString()];
+                    }
 
+                    // Tooltip
+                    if (this.toolTip1.GetToolTip(item) != "")
+                    {
+                        this.toolTip1.SetToolTip(item, diccionario[this.toolTip1.GetToolTip(item)]);
+                    }
+
+                    foreach (Control i in item.Controls)
+                    {
+                        // Etiquetas
+                        if (i.Tag != null)
+                        {
+                            i.Text = diccionario[i.Tag.ToString()];
+                        }
+
+                        // Tooltip
+                        if (this.toolTip1.GetToolTip(i) != "")
+                        {
+                            this.toolTip1.SetToolTip(i, diccionario[this.toolTip1.GetToolTip(i)]);
+                        }
+                    }
+
+                }
             }
             catch (Exception ex)
             {
