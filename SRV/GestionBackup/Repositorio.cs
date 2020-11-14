@@ -180,11 +180,11 @@ namespace Servicios.GestionBackup
                 
             }
 
-            catch (SqlException exsql)
+            catch (SqlException)
             {
                 test = false;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 test = false;
             }
