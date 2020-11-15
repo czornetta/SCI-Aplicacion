@@ -64,5 +64,24 @@ namespace PruebasUnitarias
             Assert.Equal(rEsperado, resultado);
 
         }
+
+        [Theory]
+        [InlineData("admin", "123", false)]
+        public void CerrarSesion(string nombre, string clave, bool rEsperado)
+        {
+            // Arrange
+            NUsuario nUsuario = new NUsuario();
+            bool resultado;
+            
+            // Act            
+            nUsuario.IniciarSesion(nombre, clave);
+            nUsuario.CerrarSesion();
+
+            resultado = Sesion.SesionActiva();
+            
+            // Assert
+            Assert.Equal(rEsperado, resultado);
+
+        }
     }
 }
