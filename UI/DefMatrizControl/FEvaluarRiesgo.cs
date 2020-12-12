@@ -165,18 +165,20 @@ namespace Presentacion.DefMatrizControl
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            textBox1.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
-            textBox2.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[1].Value);
-            comboBox1.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[2].Value);
-            comboBox2.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[3].Value);
-            textBox3.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[4].Value);
-            textBox4.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[5].Value);
-            textBox5.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[6].Value);
+            if (e.RowIndex >= 0)
+            {
+                textBox1.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+                textBox2.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[1].Value);
+                comboBox1.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[2].Value);
+                comboBox2.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[3].Value);
+                textBox3.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[4].Value);
+                textBox4.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[5].Value);
+                textBox5.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[6].Value);
 
-            objCRUD = (RiesgoPropuesto)dataGridView1.SelectedRows[0].DataBoundItem;
-            button1.Enabled = true;
-            button2.Enabled = true;
-
+                objCRUD = (RiesgoPropuesto)dataGridView1.SelectedRows[0].DataBoundItem;
+                button1.Enabled = true;
+                button2.Enabled = true;
+            }
         }
 
         private void FEvaluarRiesgo_FormClosing(object sender, FormClosingEventArgs e)

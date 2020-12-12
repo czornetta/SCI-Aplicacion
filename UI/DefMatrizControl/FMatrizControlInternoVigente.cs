@@ -140,16 +140,20 @@ namespace Presentacion.DefMatrizControl
 
          private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            areaNegocio = (AreaNegocio)dataGridView1.Rows[e.RowIndex].Cells[0].Value;
-            UpdGrillaRiesgos();
-
+            if (e.RowIndex >= 0)
+            {
+                areaNegocio = (AreaNegocio)dataGridView1.Rows[e.RowIndex].Cells[0].Value;
+                UpdGrillaRiesgos();
+            }
         }
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            riesgo = (RiesgoAceptado)dataGridView2.SelectedRows[0].DataBoundItem;
-            UpdGrillaControlesInternos();
-
+            if (e.RowIndex >= 0)
+            {
+                riesgo = (RiesgoAceptado)dataGridView2.SelectedRows[0].DataBoundItem;
+                UpdGrillaControlesInternos();
+            }
         }
 
         public void ActualizarIdioma(Idioma idioma)

@@ -125,12 +125,14 @@ namespace Presentacion.DefMatrizControl
         {
             try
             {
-                AreaNegocio areaNegocio = (AreaNegocio)dataGridView1.Rows[e.RowIndex].Cells[0].Value;
-                EstadoRiesgo estadoRiesgo = (EstadoRiesgo)dataGridView1.Rows[e.RowIndex].Cells[1].Value;
-                
-                dataGridView2.DataSource = null;
-                dataGridView2.DataSource = nMatrizControl.GetRiesgosAreaNegocio(matrizControl, areaNegocio, estadoRiesgo);
+                if (e.RowIndex >= 0)
+                {
+                    AreaNegocio areaNegocio = (AreaNegocio)dataGridView1.Rows[e.RowIndex].Cells[0].Value;
+                    EstadoRiesgo estadoRiesgo = (EstadoRiesgo)dataGridView1.Rows[e.RowIndex].Cells[1].Value;
 
+                    dataGridView2.DataSource = null;
+                    dataGridView2.DataSource = nMatrizControl.GetRiesgosAreaNegocio(matrizControl, areaNegocio, estadoRiesgo);
+                }
             }
             catch (Exception ex)
             {

@@ -167,28 +167,31 @@ namespace Presentacion.Seguridad
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            textBox1.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
-            textBox2.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[1].Value);
-
-            rol = (Rol)dataGridView1.SelectedRows[0].DataBoundItem;
-
-            treeView1.Nodes.Clear();
-
-            TreeNode root = new TreeNode(textBox2.Text);
-            root.Tag = rol;
-            treeView1.Nodes.Add(root);
-
-            foreach (var item in rol.Privilegios)
+            if (e.RowIndex >= 0)
             {
-                MostrarEnTreeView(root, item);
+                textBox1.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+                textBox2.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[1].Value);
+
+                rol = (Rol)dataGridView1.SelectedRows[0].DataBoundItem;
+
+                treeView1.Nodes.Clear();
+
+                TreeNode root = new TreeNode(textBox2.Text);
+                root.Tag = rol;
+                treeView1.Nodes.Add(root);
+
+                foreach (var item in rol.Privilegios)
+                {
+                    MostrarEnTreeView(root, item);
+                }
+
+                treeView1.ExpandAll();
+
+                SetearComboPrivilegios();
+
+                button4.Enabled = true;
+                button5.Enabled = false;
             }
-
-            treeView1.ExpandAll();
-
-            SetearComboPrivilegios();
-
-            button4.Enabled = true;
-            button5.Enabled = false;
         }
 
         void MostrarEnTreeView(TreeNode nodo, Privilegio priv)

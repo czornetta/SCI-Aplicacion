@@ -98,38 +98,46 @@ namespace Presentacion
 
         private void Asignar()
         {
-            
-            if (textBox1.Text == "" || textBox2.Text == "")
+            try
             {
-                throw new Exception(diccionario["msg_usuario_clave"]);
-            }
+                if (textBox1.Text == "" || textBox2.Text == "")
+                {
+                    throw new Exception(diccionario["msg_usuario_clave"]);
+                }
 
-            if (comboBox2.SelectedItem == null)
-            {
-                throw new Exception(diccionario["msg_area_null"]);
-            }
+                if (comboBox2.SelectedItem == null)
+                {
+                    throw new Exception(diccionario["msg_area_null"]);
+                }
 
-            usuario.Nombre = textBox1.Text;
-            usuario.AreaNegocio = (AreaNegocio)comboBox2.SelectedItem;
+                usuario.Nombre = textBox1.Text;
+                usuario.AreaNegocio = (AreaNegocio)comboBox2.SelectedItem;
 
-            if (textBox2.Text != textBox4.Text)
-            {
-                throw new Exception(diccionario["msg_contraseñas"]);
-            }
+                if (textBox2.Text != textBox4.Text)
+                {
+                    throw new Exception(diccionario["msg_contraseñas"]);
+                }
 
-            if (textBox3.Text != "")
-            { 
-                usuario.IdUsuario = Convert.ToInt16(textBox3.Text);
+                if (textBox3.Text != "")
+                {
+                    usuario.IdUsuario = Convert.ToInt16(textBox3.Text);
 
-                if (!usuario.Clave.Equals(textBox2.Text))
+                    if (!usuario.Clave.Equals(textBox2.Text))
+                    {
+                        usuario.Clave = Cifrado.Cifrar(textBox2.Text);
+                    }
+                }
+                else
                 {
                     usuario.Clave = Cifrado.Cifrar(textBox2.Text);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                usuario.Clave = Cifrado.Cifrar(textBox2.Text);
+
+                throw new Exception(ex.Message);
             }
+            
             
         }
 
@@ -152,9 +160,16 @@ namespace Presentacion
         {
             try
             {
-
-                usuario = new Usuario();
-                Operacion(0);
+                if (textBox3.Text == "")
+                {
+                    usuario = new Usuario();
+                    Operacion(0);
+                }
+                else
+                {
+                    Inicializar();
+                }
+                
             }
             catch (Exception ex)
             {
@@ -196,15 +211,18 @@ namespace Presentacion
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            textBox3.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
-            textBox1.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[1].Value);
-            textBox2.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[2].Value);
-            textBox4.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[2].Value);
-            comboBox2.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[3].Value);
+            if (e.RowIndex >= 0)
+            {
+                textBox3.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+                textBox1.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[1].Value);
+                textBox2.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[2].Value);
+                textBox4.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[2].Value);
+                comboBox2.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[3].Value);
 
-            usuario = (Usuario)dataGridView1.SelectedRows[0].DataBoundItem;
+                usuario = (Usuario)dataGridView1.SelectedRows[0].DataBoundItem;
 
-            UpdTreeView();
+                UpdTreeView();
+            }
         }
 
         void UpdTreeView()

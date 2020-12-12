@@ -147,14 +147,16 @@ namespace Presentacion.MultiIdioma
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            textBox1.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[2].Value);
-            comboBox1.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
-            comboBox2.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[1].Value);
-            comboBox1.Enabled = false;
-            comboBox2.Enabled = false;
+            if (e.RowIndex >= 0)
+            {
+                textBox1.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[2].Value);
+                comboBox1.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+                comboBox2.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[1].Value);
+                comboBox1.Enabled = false;
+                comboBox2.Enabled = false;
 
-            traduccion = new Traduccion();
-
+                traduccion = new Traduccion();
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)

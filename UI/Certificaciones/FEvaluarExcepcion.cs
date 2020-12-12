@@ -64,18 +64,13 @@ namespace Presentacion.Certificaciones
             try
             {
                 dataGridView1.DataSource = null;
-
+                dataGridView1.Refresh();
                 dataGridView1.DataSource = nCertificacion.GetCertificaciones(matrizControl);
                 dataGridView1.Columns[0].Visible = false;
                 dataGridView1.Columns[2].Visible = false;
                 dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dataGridView1.MultiSelect = false;
 
-                //if (index >=0)
-                //{
-                //    dataGridView1.Rows[index].Selected = true;
-                //    asignar((Certificacion)dataGridView1.SelectedRows[0].DataBoundItem);
-                //}
             }
             catch (Exception ex)
             {
@@ -212,11 +207,13 @@ namespace Presentacion.Certificaciones
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            
             try
             {
-                //index = e.RowIndex;
-                
-                asignar((Certificacion)dataGridView1.SelectedRows[0].DataBoundItem);
+                if (e.RowIndex >= 0)
+                {
+                    asignar((Certificacion)dataGridView1.SelectedRows[0].DataBoundItem);
+                }
             }
             catch (Exception ex)
             {

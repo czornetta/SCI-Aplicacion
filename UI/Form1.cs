@@ -337,7 +337,9 @@ namespace Presentacion
         #region Menu Sesion
         private void iniciarSesiónToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!FormAbierto("FIniciarSesion"))
+            VerificarIntegridad();
+
+            if (!FormAbierto("FIniciarSesion") && EstadoIntegridad)
             {
                 FIniciarSesion f = new FIniciarSesion();
                 f.MdiParent = this;

@@ -135,7 +135,7 @@ namespace Presentacion.Auditoria
                 nRiesgoAudit.RestoreRiesgo(riesgoAudit);
                 MessageBox.Show(diccionario["msg_riesgo_restaurado"]);
 
-                UpdGrilla();
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -145,7 +145,11 @@ namespace Presentacion.Auditoria
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            riesgoAudit = (RiesgoAudit)dataGridView1.SelectedRows[0].DataBoundItem;
+            if (e.RowIndex >= 0)
+            {
+                riesgoAudit = (RiesgoAudit)dataGridView1.SelectedRows[0].DataBoundItem;
+            }
+                
         }
 
         public void ActualizarIdioma(Idioma idioma)

@@ -106,7 +106,10 @@ namespace Presentacion.GestionBackup
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            backup = (Backup)dataGridView1.SelectedRows[0].DataBoundItem;
+            if (e.RowIndex >= 0)
+            {
+                backup = (Backup)dataGridView1.SelectedRows[0].DataBoundItem;
+            }
         }
 
         public void ActualizarIdioma(Idioma idioma)

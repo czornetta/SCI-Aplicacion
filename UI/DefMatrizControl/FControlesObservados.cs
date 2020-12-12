@@ -184,20 +184,24 @@ namespace Presentacion.DefMatrizControl
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            textBox1.Text = Convert.ToString(dataGridView2.Rows[e.RowIndex].Cells[0].Value);
-            textBox2.Text = Convert.ToString(dataGridView2.Rows[e.RowIndex].Cells[1].Value);
-            textBox3.Text = Convert.ToString(dataGridView2.Rows[e.RowIndex].Cells[2].Value);
-            textBox6.Text = Convert.ToString(dataGridView2.Rows[e.RowIndex].Cells[5].Value);
-            textBox5.Text = Convert.ToString(dataGridView2.Rows[e.RowIndex].Cells[6].Value);
-            textBox4.Text = Convert.ToString(dataGridView2.Rows[e.RowIndex].Cells[7].Value);
+            if (e.RowIndex >= 0)
+            {
+                textBox1.Text = Convert.ToString(dataGridView2.Rows[e.RowIndex].Cells[0].Value);
+                textBox2.Text = Convert.ToString(dataGridView2.Rows[e.RowIndex].Cells[1].Value);
+                textBox3.Text = Convert.ToString(dataGridView2.Rows[e.RowIndex].Cells[2].Value);
+                textBox6.Text = Convert.ToString(dataGridView2.Rows[e.RowIndex].Cells[5].Value);
+                textBox5.Text = Convert.ToString(dataGridView2.Rows[e.RowIndex].Cells[6].Value);
+                textBox4.Text = Convert.ToString(dataGridView2.Rows[e.RowIndex].Cells[7].Value);
 
-            comboBox1.Text = Convert.ToString(dataGridView2.Rows[e.RowIndex].Cells[3].Value);
-            comboBox2.Text = Convert.ToString(dataGridView2.Rows[e.RowIndex].Cells[4].Value);
+                comboBox1.Text = Convert.ToString(dataGridView2.Rows[e.RowIndex].Cells[3].Value);
+                comboBox2.Text = Convert.ToString(dataGridView2.Rows[e.RowIndex].Cells[4].Value);
 
-            button1.Enabled = true;
-            button3.Enabled = true;
+                button1.Enabled = true;
+                button3.Enabled = true;
 
-            objCRUD = (ControlInternoObservado)dataGridView2.SelectedRows[0].DataBoundItem;
+                objCRUD = (ControlInternoObservado)dataGridView2.SelectedRows[0].DataBoundItem;
+            }
+            
         }
 
         public void ActualizarIdioma(Idioma idioma)

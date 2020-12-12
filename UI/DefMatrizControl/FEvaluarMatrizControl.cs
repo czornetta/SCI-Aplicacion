@@ -240,46 +240,54 @@ namespace Presentacion.DefMatrizControl
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            areaNegocio = (AreaNegocio)dataGridView1.Rows[e.RowIndex].Cells[0].Value;
-            UpdGrillaRiesgos();
+            if (e.RowIndex >= 0)
+            {
+                areaNegocio = (AreaNegocio)dataGridView1.Rows[e.RowIndex].Cells[0].Value;
+                UpdGrillaRiesgos();
 
-            textBox2.Text = null;
-            textBox4.Text = null;
-            textBox5.Text = null;
-            button2.Enabled = false;
-            button3.Enabled = false;
+                textBox2.Text = null;
+                textBox4.Text = null;
+                textBox5.Text = null;
+                button2.Enabled = false;
+                button3.Enabled = false;
+            }
         }
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            riesgo = (RiesgoAceptado)dataGridView2.SelectedRows[0].DataBoundItem;
-            UpdGrillaControlesInternos();
+            if (e.RowIndex >= 0)
+            {
+                riesgo = (RiesgoAceptado)dataGridView2.SelectedRows[0].DataBoundItem;
+                UpdGrillaControlesInternos();
 
-            textBox2.Text = null;
-            textBox4.Text = null;
-            textBox5.Text = null;
-            button2.Enabled = false;
-            button3.Enabled = false;
+                textBox2.Text = null;
+                textBox4.Text = null;
+                textBox5.Text = null;
+                button2.Enabled = false;
+                button3.Enabled = false;
+            }
         }
 
         private void dataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            controlInterno = (ControlInterno)dataGridView3.SelectedRows[0].DataBoundItem;
-            textBox2.Text = controlInterno.Observacion;
-            textBox4.Text = controlInterno.Comentario;
-            textBox5.Text = controlInterno.Nombre;
-
-            if (radioButton1.Checked)
+            if (e.RowIndex >= 0)
             {
-                button2.Enabled = true;
-                button3.Enabled = true;
-            }
-            else 
-            {
-                button2.Enabled = false;
-                button3.Enabled = false;
-            }
+                controlInterno = (ControlInterno)dataGridView3.SelectedRows[0].DataBoundItem;
+                textBox2.Text = controlInterno.Observacion;
+                textBox4.Text = controlInterno.Comentario;
+                textBox5.Text = controlInterno.Nombre;
 
+                if (radioButton1.Checked)
+                {
+                    button2.Enabled = true;
+                    button3.Enabled = true;
+                }
+                else
+                {
+                    button2.Enabled = false;
+                    button3.Enabled = false;
+                }
+            }
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)

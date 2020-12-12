@@ -115,11 +115,13 @@ namespace Presentacion.MultiIdioma
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            textBox1.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
-            textBox2.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[1].Value);
+            if (e.RowIndex >= 0)
+            {
+                textBox1.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+                textBox2.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[1].Value);
 
-            etiqueta = new Etiqueta();
-
+                etiqueta = new Etiqueta();
+            }
         }
 
         public void ActualizarIdioma(Idioma idioma)

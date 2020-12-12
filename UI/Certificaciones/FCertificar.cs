@@ -142,8 +142,12 @@ namespace Presentacion.Certificaciones
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            controlInterno = (ControlInternoAceptado)dataGridView1.SelectedRows[0].DataBoundItem;
-            UpdGrillaCertificaciones();
+            if (e.RowIndex >= 0)
+            {
+                controlInterno = (ControlInternoAceptado)dataGridView1.SelectedRows[0].DataBoundItem;
+                UpdGrillaCertificaciones();
+            }
+            
         }
 
         public void ActualizarIdioma(Idioma idioma)

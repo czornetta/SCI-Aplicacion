@@ -227,9 +227,9 @@ namespace Presentacion.DefMatrizControl
                 
                 FRiesgoAudit f = new FRiesgoAudit();
                 f.textBox1.Text = objCRUD.Id.ToString();
-                f.textBox2.Text = objCRUD.Nombre;
-                f.comboBox1.Text = objCRUD.AreaNegocio.Nombre;
-                f.comboBox3.Text = objCRUD.MatrizControl.Periodo.ToString();
+                //f.textBox2.Text = objCRUD.Nombre;
+                //f.comboBox1.Text = objCRUD.AreaNegocio.Nombre;
+                //f.comboBox3.Text = objCRUD.MatrizControl.Periodo.ToString();
 
                 f.textBox1.Enabled = false;
                 f.textBox2.Enabled = false;
@@ -244,25 +244,28 @@ namespace Presentacion.DefMatrizControl
             }
             catch (Exception ex)
             {
-MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            textBox1.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
-            textBox2.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[1].Value);
-            comboBox1.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[2].Value);
-            comboBox1.Enabled = false;
-            comboBox2.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[3].Value);
-            textBox3.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[4].Value);
+            if (e.RowIndex >= 0)
+            {
+                textBox1.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+                textBox2.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[1].Value);
+                comboBox1.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[2].Value);
+                comboBox1.Enabled = false;
+                comboBox2.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[3].Value);
+                textBox3.Text = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[4].Value);
 
-            objCRUD = (RiesgoPropuesto)dataGridView1.SelectedRows[0].DataBoundItem;
+                objCRUD = (RiesgoPropuesto)dataGridView1.SelectedRows[0].DataBoundItem;
 
-            button1.Enabled = true;
-            button2.Enabled = true;
-            button3.Enabled = true;
-            button4.Enabled = true;
+                button1.Enabled = true;
+                button2.Enabled = true;
+                button3.Enabled = true;
+                button4.Enabled = true;
+            }
         }
 
         public void ActualizarIdioma(Idioma idioma)

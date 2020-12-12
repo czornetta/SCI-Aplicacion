@@ -227,28 +227,34 @@ namespace Presentacion.DefMatrizControl
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            riesgo = (RiesgoAceptado)dataGridView1.Rows[e.RowIndex].DataBoundItem;
+            if (e.RowIndex >= 0)
+            {
+                riesgo = (RiesgoAceptado)dataGridView1.Rows[e.RowIndex].DataBoundItem;
 
-            LimpiarCampos();
-            UpdGrillaControlInterno();
+                LimpiarCampos();
+                UpdGrillaControlInterno();
 
-            textBox2.Enabled = true;
-            textBox3.Enabled = true;
-            comboBox1.Enabled = true;
-            comboBox2.Enabled = true;
-            button1.Enabled = true;
+                textBox2.Enabled = true;
+                textBox3.Enabled = true;
+                comboBox1.Enabled = true;
+                comboBox2.Enabled = true;
+                button1.Enabled = true;
+            }
         }
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            textBox1.Text = Convert.ToString(dataGridView2.Rows[e.RowIndex].Cells[0].Value);
-            textBox2.Text = Convert.ToString(dataGridView2.Rows[e.RowIndex].Cells[1].Value);
-            textBox3.Text = Convert.ToString(dataGridView2.Rows[e.RowIndex].Cells[2].Value);
-            comboBox1.Text = Convert.ToString(dataGridView2.Rows[e.RowIndex].Cells[3].Value);
-            comboBox2.Text = Convert.ToString(dataGridView2.Rows[e.RowIndex].Cells[4].Value);
-            
-            button2.Enabled = true;
-            button3.Enabled = true;
+            if (e.RowIndex >= 0)
+            {
+                textBox1.Text = Convert.ToString(dataGridView2.Rows[e.RowIndex].Cells[0].Value);
+                textBox2.Text = Convert.ToString(dataGridView2.Rows[e.RowIndex].Cells[1].Value);
+                textBox3.Text = Convert.ToString(dataGridView2.Rows[e.RowIndex].Cells[2].Value);
+                comboBox1.Text = Convert.ToString(dataGridView2.Rows[e.RowIndex].Cells[3].Value);
+                comboBox2.Text = Convert.ToString(dataGridView2.Rows[e.RowIndex].Cells[4].Value);
+
+                button2.Enabled = true;
+                button3.Enabled = true;
+            }
         }
 
         public void ActualizarIdioma(Idioma idioma)
