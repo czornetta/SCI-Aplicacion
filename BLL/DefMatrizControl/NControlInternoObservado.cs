@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Entidades.DefMatrizControl;
 using Mapeo.DefMatrizControl;
 using Entidades.Seguridad;
+using Servicios.Seguridad;
 
 namespace Negocio.DefMatrizControl
 {
@@ -39,8 +40,32 @@ namespace Negocio.DefMatrizControl
 
         public void ProponerControlInterno(ControlInternoObservado obj)
         {
-            var estado = (new NEstadoControlInterno()).GetEstadosControlInterno().FirstOrDefault(x => x.Clase == typeof(ControlInternoPropuesto).ToString());
-            (new MControlInterno()).SetEstadoControlInterno(obj, estado);
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("ControlInternoObservado");
+
+                if (obj.Nombre == null)
+                    throw new AtributoNotNullException("Nombre");
+
+                if (obj.Descripcion == null)
+                    throw new AtributoNotNullException("Descripcion");
+
+                if (obj.Tipo == null)
+                    throw new AtributoNotNullException("Tipo");
+
+                if (obj.Periodicidad == null)
+                    throw new AtributoNotNullException("Periodicidad");
+
+
+                var estado = (new NEstadoControlInterno()).GetEstadosControlInterno().FirstOrDefault(x => x.Clase == typeof(ControlInternoPropuesto).ToString());
+                (new MControlInterno()).SetEstadoControlInterno(obj, estado);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public void CancelarControlInterno(ControlInternoObservado obj)

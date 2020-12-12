@@ -13,17 +13,62 @@ namespace Negocio.Seguridad
     {
         public void AgregarPrivilegio(Privilegio obj)
         {
-            (new MPrivilegio()).Operacion(obj,0);
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("Privilegio");
+
+                if (obj.Nombre == null)
+                    throw new AtributoNotNullException("Nombre");
+
+                (new MPrivilegio()).Operacion(obj, 0);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public void ModificarPrivilegio(Privilegio obj)
         {
-            (new MPrivilegio()).Operacion(obj,1);
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("Privilegio");
+
+                if (!(obj.Id > 0))
+                    throw new AtributoNotNullException("Id");
+
+                if (obj.Nombre == null)
+                    throw new AtributoNotNullException("Nombre");
+
+                (new MPrivilegio()).Operacion(obj, 1);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public void BorrarPrivilegio(Privilegio obj)
         {
-            (new MPrivilegio()).Operacion(obj,2);
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("Privilegio");
+
+                if (!(obj.Id > 0))
+                    throw new AtributoNotNullException("Id");
+
+                (new MPrivilegio()).Operacion(obj, 2);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public List<Privilegio> GetPrivilegios(Usuario usr)
@@ -49,47 +94,113 @@ namespace Negocio.Seguridad
         public bool EsPrivilegioPadre(Privilegio padre, Privilegio hijo)
         {
             bool res = false;
-
-            foreach (var item in padre.Privilegios)
+            try
             {
-                if (item.Id == hijo.Id)
-                {
-                    res = true;
-                    break;
-                }
+                if (padre == null)
+                    throw new AtributoNotNullException("Privilegio Padre");
 
-                if(item.Privilegios.Count()>0)
-                {
-                    res = EsPrivilegioPadre(item, hijo);
+                if (hijo == null)
+                    throw new AtributoNotNullException("Privilegio Hijo");
 
-                    if (res)
+                foreach (var item in padre.Privilegios)
+                {
+                    if (item.Id == hijo.Id)
                     {
+                        res = true;
                         break;
+                    }
+
+                    if (item.Privilegios.Count() > 0)
+                    {
+                        res = EsPrivilegioPadre(item, hijo);
+
+                        if (res)
+                        {
+                            break;
+                        }
                     }
                 }
             }
-
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
             return res;
         }
 
         public void AgregarPrivilegioHijo(Privilegio obj, Privilegio priv)
         {
-            (new MPrivilegio()).OperacionHijo(obj,priv, 0);
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("Privilegio Padre");
+
+                if (priv == null)
+                    throw new AtributoNotNullException("Privilegio Hijo");
+
+                (new MPrivilegio()).OperacionHijo(obj, priv, 0);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public void BorrarPrivilegioHijo(Privilegio obj, Privilegio priv)
         {
-            (new MPrivilegio()).OperacionHijo(obj,priv, 1);
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("Privilegio Padre");
+
+                if (priv == null)
+                    throw new AtributoNotNullException("Privilegio Hijo");
+
+                (new MPrivilegio()).OperacionHijo(obj, priv, 1);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public void AgregarPrivilegioUsuario(Usuario obj, Privilegio priv)
         {
-            (new MPrivilegio()).OperacionPrivlegioUsuario(obj, priv, 0);
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("Usuario");
+
+                if (priv == null)
+                    throw new AtributoNotNullException("Privilegio");
+
+                (new MPrivilegio()).OperacionPrivlegioUsuario(obj, priv, 0);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public void BorrarPrivilegioUsuario(Usuario obj, Privilegio priv)
         {
-            (new MPrivilegio()).OperacionPrivlegioUsuario(obj, priv, 1);
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("Usuario");
+
+                if (priv == null)
+                    throw new AtributoNotNullException("Privilegio");
+
+                (new MPrivilegio()).OperacionPrivlegioUsuario(obj, priv, 1);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

@@ -82,7 +82,7 @@ namespace Presentacion.Seguridad
 
                 Inicializar();
 
-                //MessageBox.Show(diccionario["msg_periodo_creado"]);
+                
             }
             catch (Exception ex)
             {

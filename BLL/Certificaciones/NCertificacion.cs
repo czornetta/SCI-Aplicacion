@@ -9,6 +9,7 @@ using Entidades.DefMatrizControl;
 using Negocio.DefMatrizControl;
 using Entidades.Seguridad;
 using System.Collections;
+using Servicios.Seguridad;
 
 namespace Negocio.Certificaciones
 {
@@ -16,7 +17,30 @@ namespace Negocio.Certificaciones
     {
         public void AddCertificacion(Certificacion obj)
         {
-            (new MCertificacion()).Operacion(obj, 0);
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("Certificacion");
+
+                if (obj.Usuario == null)
+                    throw new AtributoNotNullException("Usuario");
+
+                if (obj.Fecha == null)
+                    throw new AtributoNotNullException("Fecha");
+
+                if (obj.ControlInterno == null)
+                    throw new AtributoNotNullException("ControlInterno");
+
+                if (obj.Resultado == null)
+                    throw new AtributoNotNullException("Resultado");
+
+                (new MCertificacion()).Operacion(obj, 0);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public void AceptarExcepcion(Certificacion obj)

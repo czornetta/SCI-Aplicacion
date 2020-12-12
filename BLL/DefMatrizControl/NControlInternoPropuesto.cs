@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Entidades.DefMatrizControl;
 using Mapeo.DefMatrizControl;
 using Entidades.Seguridad;
+using Servicios.Seguridad;
 
 namespace Negocio.DefMatrizControl
 {
@@ -14,23 +15,82 @@ namespace Negocio.DefMatrizControl
     {
         public void AgregarControlInterno(ControlInternoPropuesto obj)
         {
-            (new MControlInterno()).Operacion(obj, 0);
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("ControlInternoPropuesto");
+
+                if (obj.Nombre == null)
+                    throw new AtributoNotNullException("Nombre");
+
+                if (obj.Descripcion == null)
+                    throw new AtributoNotNullException("Descripcion");
+
+                if (obj.Tipo == null)
+                    throw new AtributoNotNullException("Tipo");
+
+                if (obj.Periodicidad == null)
+                    throw new AtributoNotNullException("Periodicidad");
+
+                if (obj.Riesgo == null)
+                    throw new AtributoNotNullException("Riesgo");
+
+                (new MControlInterno()).Operacion(obj, 0);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public void ModificarControlInterno(ControlInternoPropuesto obj)
         {
-            (new MControlInterno()).Operacion(obj, 1);
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("ControlInternoPropuesto");
+
+                if (obj.Nombre == null)
+                    throw new AtributoNotNullException("Nombre");
+
+                if (obj.Descripcion == null)
+                    throw new AtributoNotNullException("Descripcion");
+
+                if (obj.Tipo == null)
+                    throw new AtributoNotNullException("Tipo");
+
+                if (obj.Periodicidad == null)
+                    throw new AtributoNotNullException("Periodicidad");
+
+                if (obj.Riesgo == null)
+                    throw new AtributoNotNullException("Riesgo");
+
+                (new MControlInterno()).Operacion(obj, 1);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public void BorrarControlInterno(ControlInternoPropuesto obj)
         {
-            (new MControlInterno()).Operacion(obj, 2);
-        }
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("ControlInternoPropuesto");
 
-        //public override IList<ControlInterno> GetControlesInternos()
-        //{
-        //    return (new MControlInterno()).Leer(null);
-        //}
+                
+                (new MControlInterno()).Operacion(obj, 2);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
+        }
 
         public override IList<ControlInterno> GetControlesInternos(Riesgo riesgo)
         {
@@ -65,8 +125,22 @@ namespace Negocio.DefMatrizControl
 
         public void ObservarControlInterno(ControlInternoPropuesto obj)
         {
-            var estado = (new NEstadoControlInterno()).GetEstadosControlInterno().FirstOrDefault(x => x.Clase == typeof(ControlInternoObservado).ToString());
-            (new MControlInterno()).SetEstadoControlInterno(obj, estado);
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("ControlInternoPropuesto");
+
+                if (obj.Observacion == null)
+                    throw new AtributoNotNullException("Observacion");
+
+                var estado = (new NEstadoControlInterno()).GetEstadosControlInterno().FirstOrDefault(x => x.Clase == typeof(ControlInternoObservado).ToString());
+                (new MControlInterno()).SetEstadoControlInterno(obj, estado);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
     }
 }

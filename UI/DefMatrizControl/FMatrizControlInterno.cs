@@ -63,8 +63,6 @@ namespace Presentacion.DefMatrizControl
 
             UpdGrilla();
 
-            //button2.Enabled = false;
-            //button3.Enabled = false;
         }
 
         private void Asignar()

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Entidades.Seguridad;
 using Mapeo.Seguridad;
+using Servicios.Seguridad;
 
 namespace Negocio.Seguridad
 {
@@ -12,17 +13,62 @@ namespace Negocio.Seguridad
     {
         public void AgregarAreaNegocio(AreaNegocio obj)
         {
-            (new MAreaNegocio()).Operacion(obj, 0);
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("AreaNegocio");
+
+                if (obj.Nombre == null)
+                    throw new AtributoNotNullException("Nombre");
+
+                (new MAreaNegocio()).Operacion(obj, 0);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public void ModificarAreaNegocio(AreaNegocio obj)
         {
-            (new MAreaNegocio()).Operacion(obj, 1);
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("AreaNegocio");
+
+                if (!(obj.Id > 0))
+                    throw new AtributoNotNullException("Id");
+
+                if (obj.Nombre == null)
+                    throw new AtributoNotNullException("Nombre");
+
+                (new MAreaNegocio()).Operacion(obj, 1);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public void BorrarAreaNegocio(AreaNegocio obj)
         {
-            (new MAreaNegocio()).Operacion(obj, 2);
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("AreaNegocio");
+
+                if (!(obj.Id > 0))
+                    throw new AtributoNotNullException("Id");
+
+                (new MAreaNegocio()).Operacion(obj, 2);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public IList<AreaNegocio> GetAreasNegocio()

@@ -28,10 +28,51 @@ namespace Negocio.Seguridad
             return (new MUsuario()).Leer();
         }
 
+        public void VerificarDatosObligatorios(Usuario obj)
+        {
+            try
+            {
+                if (obj.Nombre == null)
+                    throw new AtributoNotNullException("Nombre");
+
+                if (obj.Clave == null)
+                    throw new AtributoNotNullException("Clave");
+
+                if (obj.AreaNegocio == null)
+                    throw new AtributoNotNullException("AreaNegocio");
+
+                if (!(obj.AreaNegocio.Id > 0))
+                    throw new AtributoNotNullException("AreaNegocio.Id");
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void DatosLoginOK(string nombre, string clave)
+        {
+            try
+            {
+                if (nombre == null)
+                    throw new LoginException(LoginResult.InvalidUsername);
+
+                if (clave == null)
+                    throw new LoginException(LoginResult.InvalidPassword);
+
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(LoginException))
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public LoginResult IniciarSesion(string nombre, string clave) 
         {
             try
             {
+                DatosLoginOK(nombre, clave);
+
                 if (Sesion.SesionActiva())
                     throw new LoginException(LoginResult.ExistsActiveSesion);
 
@@ -56,11 +97,8 @@ namespace Negocio.Seguridad
                 Sesion.Instancia.Privilegios = (new NPrivilegio()).GetPrivilegios(usuario);
                 Sesion.Instancia.Idioma = (new NIdioma()).GetIdiomaPrincipal();
             }
-            catch (LoginException ex)
-            {
-                throw new LoginException(ex.Result);
-            }
-            catch (Exception ex)
+            
+            catch (Exception ex) when (ex.GetType() != typeof(LoginException))
             {
                 throw new Exception(ex.Message);
             }
@@ -75,86 +113,17 @@ namespace Negocio.Seguridad
 
         public void RecordarClave(Usuario usr)
         {
-            BinaryFormatter formateador = new BinaryFormatter();
-            Stream archivo;
-            string nombreArchivo = "usr.dat";
-            List<Usuario> lusr = new List<Usuario>();
-            usr.Nombre = usr.Nombre.ToLower();
-
-            if (File.Exists(nombreArchivo))
-            {
-                archivo = new FileStream(nombreArchivo, FileMode.Open, FileAccess.Read, FileShare.None);
-                lusr = (List<Usuario>)formateador.Deserialize(archivo);
-                archivo.Close();
-
-                Usuario usrExiste = lusr.FirstOrDefault(x => x.Nombre == usr.Nombre);
-                    
-                if (usrExiste != null)
-                {
-                    lusr.Remove(usrExiste);
-                }
-
-                lusr.Add(usr);
-            }
-            else
-            {
-                lusr.Add(usr);
-            }
-
-            archivo = new FileStream(nombreArchivo, FileMode.Create,FileAccess.Write,FileShare.None);
-            formateador.Serialize(archivo, lusr);
-            archivo.Close();
+            (new MUsuario()).RecordarClave(usr);
         }
 
         public Usuario ObtenerClave(string nombre)
         {
-            BinaryFormatter formateador = new BinaryFormatter();
-            string nombreArchivo = "usr.dat";
-            Stream archivo;
-            List<Usuario> lusr;
-            Usuario usr = new Usuario();
-            
-            if (File.Exists(nombreArchivo))
-            {
-                archivo = new FileStream(nombreArchivo, FileMode.Open, FileAccess.Read, FileShare.None);
-                lusr = (List<Usuario>)formateador.Deserialize(archivo);
-                archivo.Close();
-
-                if (lusr != null)
-                {
-                    usr = lusr.FirstOrDefault(x => x.Nombre == nombre.ToLower());
-                }
-                
-            }
-            
-            return usr;
+            return (new MUsuario()).ObtenerClave(nombre);
         }
 
         public void OlvidarClave(Usuario usr)
         {
-            BinaryFormatter formateador = new BinaryFormatter();
-            Stream archivo;
-            string nombreArchivo = "usr.dat";
-            List<Usuario> lusr = new List<Usuario>();
-            usr.Nombre = usr.Nombre.ToLower();
-
-            if (File.Exists(nombreArchivo))
-            {
-                archivo = new FileStream(nombreArchivo, FileMode.Open, FileAccess.Read, FileShare.None);
-                lusr = (List<Usuario>)formateador.Deserialize(archivo);
-                archivo.Close();
-
-                Usuario usrExiste = lusr.FirstOrDefault(x => x.Nombre == usr.Nombre);
-
-                if (usrExiste != null)
-                {
-                    lusr.Remove(usrExiste);
-                }
-            }
-
-            archivo = new FileStream(nombreArchivo, FileMode.Create, FileAccess.Write, FileShare.None);
-            formateador.Serialize(archivo, lusr);
-            archivo.Close();
+            (new MUsuario()).OlvidarClave(usr);
         }
 
     }

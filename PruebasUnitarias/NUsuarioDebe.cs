@@ -6,14 +6,17 @@ using System.Threading.Tasks;
 using Xunit;
 using Servicios.Seguridad;
 using Negocio.Seguridad;
+using Entidades.Seguridad;
 
 namespace PruebasUnitarias
 {
     public class NUsuarioDebe
     {
         [Theory]
+        [InlineData(null, "123", LoginResult.InvalidUsername)]
         [InlineData("admi", "123",LoginResult.InvalidUsername)]
         [InlineData("admin", "1", LoginResult.InvalidPassword)]
+        [InlineData("admin", null, LoginResult.InvalidPassword)]
         [InlineData("admin", "123", LoginResult.ValidUser)]
         public void IniciarSesion(string nombre, string clave, LoginResult rEsperado)
         {
@@ -78,6 +81,43 @@ namespace PruebasUnitarias
             nUsuario.CerrarSesion();
 
             resultado = Sesion.SesionActiva();
+            
+            // Assert
+            Assert.Equal(rEsperado, resultado);
+
+        }
+
+        [Theory]
+        [InlineData(null, "123", 1, true)]
+        [InlineData("admin", null, 1, true)]
+        [InlineData("admin", "123",0, true)]
+        public void InformarAtributoNotNullException(string nombre, string clave, int areaId, bool rEsperado)
+        {
+            // Arrange
+            NUsuario nUsuario = new NUsuario();
+            bool resultado = false;
+            AreaNegocio areaNegocio;
+
+            // Act
+            try
+            {
+                if (areaId > 0)
+                {
+                    areaNegocio = new AreaNegocio {Id = areaId };
+                }
+                else
+                {
+                    areaNegocio = new AreaNegocio();
+                }
+
+                Usuario usr = new Usuario { Nombre = nombre, Clave = clave, AreaNegocio = areaNegocio };
+                nUsuario.VerificarDatosObligatorios(usr);
+               
+            }
+            catch (AtributoNotNullException)
+            {
+                resultado = true;
+            }
             
             // Assert
             Assert.Equal(rEsperado, resultado);

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Entidades.DefMatrizControl;
 using Mapeo.DefMatrizControl;
 using Entidades.Seguridad;
+using Servicios.Seguridad;
 
 namespace Negocio.DefMatrizControl
 {
@@ -43,8 +44,34 @@ namespace Negocio.DefMatrizControl
 
         public void ProponerRiesgo(RiesgoObservado obj)
         {
-            var estadoRiesgo = (new MEstadoRiesgo()).Leer().FirstOrDefault(x => x.Clase == typeof(RiesgoPropuesto).ToString());
-            (new MRiesgo()).SetEstadoRiesgo(obj, estadoRiesgo);
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("RiesgoObservado");
+
+                if (!(obj.Id > 0))
+                    throw new AtributoNotNullException("Id");
+
+                if (obj.MatrizControl == null)
+                    throw new AtributoNotNullException("MatrizControl");
+
+                if (obj.AreaNegocio == null)
+                    throw new AtributoNotNullException("AreaNegocio");
+
+                if (obj.Clasificacion == null)
+                    throw new AtributoNotNullException("Clasificacion");
+
+                if (obj.Nombre == null)
+                    throw new AtributoNotNullException("Nombre");
+
+                var estadoRiesgo = (new MEstadoRiesgo()).Leer().FirstOrDefault(x => x.Clase == typeof(RiesgoPropuesto).ToString());
+                (new MRiesgo()).SetEstadoRiesgo(obj, estadoRiesgo);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public void CancelarRiesgo(RiesgoObservado obj)

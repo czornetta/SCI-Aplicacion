@@ -98,6 +98,17 @@ namespace Presentacion
 
         private void Asignar()
         {
+            
+            if (textBox1.Text == "" || textBox2.Text == "")
+            {
+                throw new Exception(diccionario["msg_usuario_clave"]);
+            }
+
+            if (comboBox2.SelectedItem == null)
+            {
+                throw new Exception(diccionario["msg_area_null"]);
+            }
+
             usuario.Nombre = textBox1.Text;
             usuario.AreaNegocio = (AreaNegocio)comboBox2.SelectedItem;
 
@@ -141,9 +152,6 @@ namespace Presentacion
         {
             try
             {
-                //// verifica consistencia de clave
-                //if (!textBox2.Text.Equals(textBox4.Text))
-                //    throw new Exception("Error: Las contraseñas ingresadas deben ser iguales.");
 
                 usuario = new Usuario();
                 Operacion(0);
@@ -160,9 +168,6 @@ namespace Presentacion
         {
             try
             {
-                //// verifica consistencia de clave
-                //if (!textBox2.Text.Equals(textBox4.Text))
-                //    throw new Exception("Error: Las contraseñas ingresadas deben ser iguales.");
 
                 Operacion(1);
             }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Entidades.DefMatrizControl;
 using Mapeo.DefMatrizControl;
 using Entidades.Seguridad;
+using Servicios.Seguridad;
 
 namespace Negocio.DefMatrizControl
 {
@@ -14,17 +15,80 @@ namespace Negocio.DefMatrizControl
     {
         public void AgregarRiesgo(RiesgoPropuesto obj)
         {
-            (new MRiesgo()).Operacion(obj, 0);
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("RiesgoPropuesto");
+
+                if (obj.MatrizControl == null)
+                    throw new AtributoNotNullException("MatrizControl");
+
+                if (obj.AreaNegocio == null)
+                    throw new AtributoNotNullException("AreaNegocio");
+
+                if (obj.Clasificacion == null)
+                    throw new AtributoNotNullException("Clasificacion");
+
+                if (obj.Nombre == null)
+                    throw new AtributoNotNullException("Nombre");
+
+                (new MRiesgo()).Operacion(obj, 0);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public void ModificarRiesgo(RiesgoPropuesto obj)
         {
-            (new MRiesgo()).Operacion(obj, 1);
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("RiesgoPropuesto");
+
+                if (!(obj.Id > 0))
+                    throw new AtributoNotNullException("Id");
+
+                if (obj.MatrizControl == null)
+                    throw new AtributoNotNullException("MatrizControl");
+
+                if (obj.AreaNegocio == null)
+                    throw new AtributoNotNullException("AreaNegocio");
+
+                if (obj.Clasificacion == null)
+                    throw new AtributoNotNullException("Clasificacion");
+
+                if (obj.Nombre == null)
+                    throw new AtributoNotNullException("Nombre");
+
+                (new MRiesgo()).Operacion(obj, 1);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public void BorrarRiesgo(RiesgoPropuesto obj)
         {
-            (new MRiesgo()).Operacion(obj, 2);
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("RiesgoPropuesto");
+
+                if (!(obj.Id > 0))
+                    throw new AtributoNotNullException("Id");
+
+                (new MRiesgo()).Operacion(obj, 2);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public override IList<Riesgo> GetRiesgos(MatrizControl matrizControl)
@@ -64,8 +128,22 @@ namespace Negocio.DefMatrizControl
 
         public void ObservarRiesgo(RiesgoPropuesto obj)
         {
-            var estadoRiesgo = (new NEstadoRiesgo()).GetEstadosRiesgo().FirstOrDefault(x => x.Clase == typeof(RiesgoObservado).ToString());
-            (new MRiesgo()).SetEstadoRiesgo(obj, estadoRiesgo);
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("RiesgoPropuesto");
+
+                if (obj.Observacion == null)
+                    throw new AtributoNotNullException("Observacion");
+
+                var estadoRiesgo = (new NEstadoRiesgo()).GetEstadosRiesgo().FirstOrDefault(x => x.Clase == typeof(RiesgoObservado).ToString());
+                (new MRiesgo()).SetEstadoRiesgo(obj, estadoRiesgo);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
     }
 }

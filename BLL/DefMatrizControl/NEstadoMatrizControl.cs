@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Entidades.DefMatrizControl;
 using Mapeo.DefMatrizControl;
+using Servicios.Seguridad;
 
 namespace Negocio.DefMatrizControl
 {
@@ -13,17 +14,62 @@ namespace Negocio.DefMatrizControl
     {
         public void Agregar(EstadoMatrizControl obj)
         {
-            (new MEstadoMatrizControl()).Operacion(obj, 0);
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("EstadoMatrizControl");
+
+                if (obj.Nombre == null)
+                    throw new AtributoNotNullException("Nombre");
+
+                (new MEstadoMatrizControl()).Operacion(obj, 0);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public void Modificar(EstadoMatrizControl obj)
         {
-            (new MEstadoMatrizControl()).Operacion(obj, 1);
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("EstadoMatrizControl");
+
+                if (!(obj.Id > 0))
+                    throw new AtributoNotNullException("Id");
+
+                if (obj.Nombre == null)
+                    throw new AtributoNotNullException("Nombre");
+
+                (new MEstadoMatrizControl()).Operacion(obj, 1);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public void BorrarEstadoRiesgo(EstadoMatrizControl obj)
         {
-            (new MEstadoMatrizControl()).Operacion(obj, 2);
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("EstadoMatrizControl");
+
+                if (!(obj.Id > 0))
+                    throw new AtributoNotNullException("Id");
+
+                (new MEstadoMatrizControl()).Operacion(obj, 2);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public IList<EstadoMatrizControl> GetEstados()

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Entidades.DefMatrizControl;
 using Mapeo.DefMatrizControl;
 using Entidades.Seguridad;
+using Servicios.Seguridad;
 
 namespace Negocio.DefMatrizControl
 {
@@ -14,17 +15,69 @@ namespace Negocio.DefMatrizControl
     {
         public void AgregarMatrizControl(MatrizControl obj)
         {
-            (new MMatrizControl()).Operacion(obj, 0);
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("MatrizControl");
+
+                if (!(obj.Periodo > 0))
+                    throw new AtributoNotNullException("Periodo");
+
+                if (obj.Estado == null)
+                    obj.Estado = new EstadoMatrizControl {Id=1};
+
+                (new MMatrizControl()).Operacion(obj, 0);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public void ModificarMatrizControl(MatrizControl obj)
         {
-            (new MMatrizControl()).Operacion(obj, 1);
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("MatrizControl");
+
+                if (!(obj.Id > 0))
+                    throw new AtributoNotNullException("Id");
+
+                if (!(obj.Periodo >0))
+                    throw new AtributoNotNullException("Periodo");
+
+                if (obj.Estado == null)
+                    throw new AtributoNotNullException("Estado");
+
+                (new MMatrizControl()).Operacion(obj, 1);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public void BorrarMatrizControl(MatrizControl obj)
         {
-            (new MMatrizControl()).Operacion(obj, 2);
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("MatrizControl");
+
+                if (!(obj.Id > 0))
+                    throw new AtributoNotNullException("Id");
+
+                
+                (new MMatrizControl()).Operacion(obj, 2);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public IList<MatrizControl> GetMatricesControl()

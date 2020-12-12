@@ -51,6 +51,7 @@
     <Compile Include="GestionIntegridad\MControlIntegridad.cs" />
     <Compile Include="MultiIdioma\IIdioma.cs" />
     <Compile Include="MultiIdioma\IIdiomaObservador.cs" />
+    <Compile Include="Seguridad\AtributoNotNullException.cs" />
     <Compile Include="Seguridad\Privilegio.cs" />
     <Compile Include="Seguridad\Rol.cs" />
     <Compile Include="Seguridad\Cifrado.cs" />

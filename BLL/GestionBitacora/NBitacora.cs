@@ -15,16 +15,32 @@ namespace Negocio.GestionBitacora
     {
         public void AgregarRegistro(Bitacora obj)
         {
+            try
+            {
+                if (obj == null)
+                    throw new AtributoNotNullException("Bitacora");
 
-            (new MBitacora()).AgregarRegistro(obj);
+                if (obj.Usuario == null)
+                    throw new AtributoNotNullException("Usuario");
+
+                if (obj.Fecha == null)
+                    throw new AtributoNotNullException("Fecha");
+
+                if (obj.Descripcion == null)
+                    throw new AtributoNotNullException("Descripcion");
+
+                if (obj.Tipo == null)
+                    throw new AtributoNotNullException("Tipo");
+
+                (new MBitacora()).AgregarRegistro(obj);
+            }
+            catch (Exception ex) when (ex.GetType() != typeof(AtributoNotNullException))
+            {
+                throw new Exception(ex.Message);
+            }
+            
 
         }
-
-        //public IEnumerable Registros()
-        //{
-        //    return (new MBitacora()).LeerBitacora();
-            
-        //}
 
         public IList<Bitacora> Registros(Usuario usuario, string tipo, DateTime fDesde, DateTime fHasta)
         {
