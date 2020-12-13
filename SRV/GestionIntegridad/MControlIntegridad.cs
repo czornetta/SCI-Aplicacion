@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
 using Entidades.GestionIntegridad;
-using AccesoDatos;
 using System.Data;
 
 namespace Servicios.GestionIntegridad
@@ -16,7 +15,7 @@ namespace Servicios.GestionIntegridad
         {
             try
             {
-                var res = (from reg in ((new Acceso()).Leer("getDVEntidad", new Hashtable())).Tables[0].AsEnumerable()
+                var res = (from reg in ((new Repositorio()).Leer("getDVEntidad", new Hashtable())).Tables[0].AsEnumerable()
                            select new DVEntidad
                            {
                                Id = reg.Field<int>("iddventidad"),

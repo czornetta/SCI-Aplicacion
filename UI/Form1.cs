@@ -76,7 +76,7 @@ namespace Presentacion
         {
             try
             {
-                Repositorio repo = new Repositorio();
+                Servicios.GestionBackup.Repositorio repo = new Servicios.GestionBackup.Repositorio();
 
                 if (!(InstanciaBD.EstadoBD))
                 {

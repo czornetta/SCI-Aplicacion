@@ -47,6 +47,7 @@
     <Compile Include="GestionBackup\NBackup.cs" />
     <Compile Include="GestionBackup\NInstanciaBD.cs" />
     <Compile Include="GestionBackup\Repositorio.cs" />
+    <Compile Include="GestionIntegridad\Repositorio.cs" />
     <Compile Include="GestionIntegridad\ControlIntegridad.cs" />
     <Compile Include="GestionIntegridad\MControlIntegridad.cs" />
     <Compile Include="MultiIdioma\IIdioma.cs" />
@@ -65,10 +66,6 @@
     <ProjectReference Include="..\BEE\Entidades.csproj">
       <Project>{7d40ce46-9299-480e-81f4-214bf9077b6c}</Project>
       <Name>Entidades</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DAL\AccesoDatos.csproj">
-      <Project>{4220d3d6-2517-48e5-b912-a04a1065e9ac}</Project>
-      <Name>AccesoDatos</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
